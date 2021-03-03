@@ -14,7 +14,6 @@
             currentImage.src = this.querySelector('img').src;
 
             images.forEach((element) => element.classList.remove('active'));
-
             this.classList.add('active');
         }
 
