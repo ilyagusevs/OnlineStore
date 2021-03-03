@@ -62,7 +62,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product Content -->
                 <div class="col-lg-6">
                     <div class="details_content">
@@ -75,8 +74,6 @@
                                 <div class="details_price">&euro; {{$item->price}}</div>
                             @endif
                         </div>
-                      
-
                         <!-- In Stock -->
                         <div class="in_stock_container">
                             <div class="availability">Availability:</div>
