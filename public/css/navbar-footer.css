@@ -1,0 +1,45 @@
+.navbar-brand {
+    font-family: 'Lilita One', cursive;
+    margin-left: 15px;
+}
+
+.search-form {
+    width: 500px;
+}
+
+.search-logo {
+    content: url("images/search.png");
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-right: 350px;
+    margin-left: 10px;
+}
+
+.search {
+    display: flex;
+}
+
+.cart {
+    content: url("images/cart-icon.png");
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-right: 15px;
+}
+
+.user-profile {
+    content: url("images/user-profile.png");
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-right: 15px;
+}
+
+.logout {
+    content: url("images/logout.png");
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-right: 15px;
+}
