@@ -43,3 +43,23 @@
     margin: 5px;
     margin-right: 15px;
 }
+
+.facebook {
+    content: url("images/facebook.png");
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.instagram {
+    content: url("images/instagram.png");
+    width: 30px;
+    height: 30px;
+}
+
+.twitter {
+    content: url("images/twitter.png");
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
