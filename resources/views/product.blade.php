@@ -3,22 +3,7 @@
 @section('title', 'JUST SPORT')
 
 @section('custom_js')
-    <script>
-    (function(){
-        const currentImage = document.querySelector('#currentImage');
-        const images = document.querySelectorAll('.details_image_thumbnail');
-
-        images.forEach((element) => element.addEventListener('click', thumbnailClick));
-
-        function thumbnailClick(e) {
-            currentImage.src = this.querySelector('img').src;
-
-            images.forEach((element) => element.classList.remove('active'));
-            this.classList.add('active');
-        }
-
-    })();
-    </script>
+    <script src="/js/product.js"></script>
 @endsection
 
 @section('content')
@@ -75,11 +60,11 @@
                         </div>
                         <!-- In Stock -->
                         <div class="in_stock_container">
-                            <div class="availability">Availability:</div>
+                            <div class="availability">Availability : </div>
                                 @if($item->in_stock)
-                                    <span style="color: green">In Stock</span>
+                                    <a class="instock" style="color: green">In Stock</a>
                                 @else
-                                    <span style="color: red">Out of stock</span>
+                                    <a class="outofstock" style="color: red">Out of stock</a>
                                 @endif
                         </div>
                         <div class="details_text">
@@ -87,12 +72,18 @@
                         </div>
 
                         <!-- Product Quantity -->
-                        <div class="product_quantity_container">
-                            <div class="product_quantity clearfix">
-                                <span>Quantity</span>
-                                <input style="width: 80px;" id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                        <div class="number">
+                            <a style="font-weight: bold;">Quantity : </a>
+                            <span class="minus">-</span>
+                            <input type="text" value="1"/>
+                            <span class="plus">+</span>
                         </div>
-                        <button style="margin-top: 20px;" type="button" class="btn btn-outline-dark">Add to cart</button>  
+                        </div>
+                        @if($item->in_stock)
+                            <button style="margin-top: 20px;" type="button" class="btn btn-success">Add to cart</button>  
+                        @else
+                            <button style="margin-top: 20px;" type="button" class="btn btn-success" disabled>Add to cart</button>  
+                        @endif
                     </div>
                 </div>
             </div>
