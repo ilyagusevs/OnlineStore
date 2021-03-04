@@ -23,6 +23,8 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomeController::class, 'home']);
 
+Route::get('/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
+
 Route::get('/{categ}/{product_id}', [ProductController::class, 'show'])->name('showProduct');
 
 Route::get('/cart', [CartController::class, 'cart']);   
