@@ -64,7 +64,7 @@
                 <!-- Product Content -->
                 <div class="col-lg-6">
                     <div class="details_content">
-                        <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->title}}</h2></div>
+                        <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->brand}} {{$item->title}}</h2></div>
                         <div class="price">
                             @if($item->new_price != null)
                                 <div class="details_discount">&euro; {{$item->price}}</div>
@@ -98,5 +98,7 @@
             </div>
         </div>
     </div>
+
+    
    
 @endsection

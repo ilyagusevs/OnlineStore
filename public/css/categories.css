@@ -1,0 +1,13 @@
+.product_image img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .product_image {
+      position: relative;
+      float: left;
+      padding: 40px;
+  }
+  
+  
+  
