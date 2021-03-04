@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,4 +15,13 @@ class ProductController extends Controller
             'item' => $item
         ]);
     }
+
+    public function showCategory($categ_alias) {
+        $categ = Category::where('alias', $categ_alias)->first();
+        
+
+        return view('categories', [
+            'categ' => $categ
+        ]);
+    }        
 }
