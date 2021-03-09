@@ -22,7 +22,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
+                        MEN
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach($categories as $category)
@@ -30,14 +30,21 @@
                         @endforeach
                       </div>
                     </li>
-                      <li class="nav-item active">
-                          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        WOMEN
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach($categories as $category)
+                          <a class="dropdown-item" href="{{route('showCategory', $category->alias)}}">{{$category->title}}</a>
+                        @endforeach
+                      </div>
+                    </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/">Features</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Features</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Pricing</a>
+                          <a class="nav-link" href="/">Pricing</a>
                       </li>
                 </ul>
             </div>
@@ -55,6 +62,10 @@
             </div>
             
         </nav>
+
+
+        
+
         
         @yield('content')
         

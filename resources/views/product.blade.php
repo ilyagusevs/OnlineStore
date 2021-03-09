@@ -1,6 +1,6 @@
 @extends('layouts.navbar-footer')
 
-@section('title', 'JUST SPORT')
+@section('title', $item->title)
 
 @section('custom_js')
     <script src="/js/product.js"></script>
@@ -52,10 +52,10 @@
                         <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->brand}} {{$item->title}}</h2></div>
                         <div class="price">
                             @if($item->new_price != null)
-                                <div class="details_discount">&euro; {{$item->price}}</div>
+                                <div class="details_discount">&euro; {{$item->old_price}}</div>
                                 <div class="details_price">&euro; {{$item->new_price}}</div>
                             @else
-                                <div class="details_price">&euro; {{$item->price}}</div>
+                                <div class="details_price">&euro; {{$item->old_price}}</div>
                             @endif
                         </div>
                         <!-- In Stock -->

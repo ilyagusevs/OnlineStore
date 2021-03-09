@@ -13,10 +13,9 @@ class AddCategoryIdToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // ja idzēš kategoriju, tad produkti izdzēšas arī
-            
         });
     }
 
@@ -27,8 +26,6 @@ class AddCategoryIdToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('products');
     }
 }

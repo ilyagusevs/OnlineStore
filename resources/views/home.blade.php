@@ -8,39 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
     </head>   
 
-    <!-- <div class="products">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="product_grid">
-                        @foreach($products as $product)
-                            @php
-                                $image = '';
-                                if(count($product->images) > 0){
-                                    $image = $product->images[0]['img'];
-                                }else{
-                                    $image = 'no_image.png';
-                                }
-                            @endphp
-                           <div class="product">
-                                <div class="product_image"><img src="css/productImages/{{$image}}" alt="{{$product->title}}">
-                                    <div class="product_content">
-                                        <div class="product_title"><a href="{{route('showProduct', ['category', $product->id])}}">{{$product->title}}</a></div>
-                                        @if($product->new_price != null)
-                                            <div style="text-decoration: line-through">&euro; {{$product->price}}</div>
-                                            <div class="product_price">&euro; {{$product->new_price}}</div>
-                                        @else
-                                            <div class="product_price">&euro; {{$product->price}}</div>
-                                        @endif      
-                                    </div>    
-                                </div>
-                           </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+
 
 
     <div class="sale"></div>
@@ -54,6 +22,26 @@
                 </section>
             </div>
     </div>
-                
+
+    <!-- <div class="row">
+        <div class="col-4 border">
+            <ul>
+                @foreach($categories as $parent)
+                <li><a href="#link{{$loop->iteration}}" data-toggle="collapse">{{$parent->title}}</a>
+                    @if($parent->children->count())
+                    <ul id="link{{$loop->iteration}}" class="collapse">
+                        @foreach($parent->children as $child)
+                        <li><a href="{{route('showCategory', $parent->alias)}}">{{$child->title}}</a></li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div> -->
+
+
+        
 
 @endsection

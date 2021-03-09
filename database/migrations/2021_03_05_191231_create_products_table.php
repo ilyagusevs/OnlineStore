@@ -16,9 +16,13 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title'); // varchar
-            $table->float('price');
+            $table->string('brand');
+            $table->float('old_price');
+	        $table->float('new_price');
             $table->boolean('in_stock');
             $table->text('description');
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // ja idzēš kategoriju, tad produkti izdzēšas arī
             $table->timestamps();
         });
     }

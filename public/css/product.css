@@ -65,6 +65,9 @@
     border: 1px solid black;
 }
 
+.details_image_thumbnail {
+    border: 1px solid lightgray;
+}
 
 .details_image_thumbnails {
    display: flex;
