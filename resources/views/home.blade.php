@@ -23,24 +23,6 @@
             </div>
     </div>
 
-    <!-- <div class="row">
-        <div class="col-4 border">
-            <ul>
-                @foreach($categories as $parent)
-                <li><a href="#link{{$loop->iteration}}" data-toggle="collapse">{{$parent->title}}</a>
-                    @if($parent->children->count())
-                    <ul id="link{{$loop->iteration}}" class="collapse">
-                        @foreach($parent->children as $child)
-                        <li><a href="{{route('showCategory', $parent->alias)}}">{{$child->title}}</a></li>
-                        @endforeach
-                    </ul>
-                    @endif
-                </li>
-                @endforeach
-            </ul>
-        </div>
-    </div> -->
-
 
         
 

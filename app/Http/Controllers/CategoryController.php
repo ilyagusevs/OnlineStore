@@ -14,11 +14,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('children')->whereNull('parent_id')->orderBy('title', 'asc')->get();
+        $categories = Category::with('children')->whereNull('parent_id')->get();
 
-      return view('categories')->with([
+        return view('categories')->with([
         'categories'  => $categories
       ]);
+
+      
     }
 
     /**

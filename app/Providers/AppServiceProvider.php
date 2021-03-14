@@ -25,10 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::orderBy('id')->get();
 
-        View::share([
-            'categories' => $categories
-        ]);
+        view()->composer('layouts.navbar-footer', function($view){
+            //get all parent categories with their subcategories
+            $categories = Category::where('parent_id', null)->with('children')->get();
+            //attach the categories to the view.     
+            $view->with(compact('categories'));
+        });
     }
 }

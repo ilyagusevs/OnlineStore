@@ -7,17 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['parent_id', 'name'];
 
     public function products(){
-        return $this->hasMany('App\Models\Product');
+        return $this->hasManyThrough(Product::class, Category::class, 'parent_id', 'category_id', 'id', 'id');
     }
 
+//    public function products(){
+//          return $this->hasMany('App\Models\Product');
+//     }
+
     public function parent() {
-        return $this->belongsTo(self::class, 'parent_id'); // static, jo savienojas pats ar sevi (rekursija)
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function children() {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

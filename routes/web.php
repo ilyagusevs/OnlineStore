@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
 
@@ -26,13 +27,9 @@ Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/category/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
 
-Route::get('/category/{categ}/{product_id}', [ProductController::class, 'show'])->name('showProduct');
+Route::get('/category/{categ}/{product_id}', [ProductController::class, 'showProduct'])->name('showProduct');
 
 Route::get('/cart', [CartController::class, 'cart']);
 
 Route::get('/account', [AccountController::class, 'account']);
 
-Route::get('/', function () {
-    $categories = Category::with('children')->whereNull('parent_id')->orderBy('title', 'asc')->get();
-    return view('home', compact('categories'));
-});
