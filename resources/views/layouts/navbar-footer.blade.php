@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -18,69 +20,25 @@
   </head>   
   <body>
     <div class="page">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" style="font-size: 30px;" href="/">JUST SPORT</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  @foreach ($categories as $category)
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{$category->title}}
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @if ($category->childrenRecursive)
-                            @foreach ($category->childrenRecursive as $child)
-                              <a class="dropdown-item" href="{{route('showCategory', $child->alias)}}">{{$child->title}}</a>
-                            @endforeach
-                        @endif
-                      </div>                    
-                    </li>            
-                  @endforeach
-                  <li class="nav-item">
-                          <a class="nav-link" href="/">Features</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/">Pricing</a>
-                      </li>
-                </ul>
-            </div>
-            <div class="search">
-                <div class="search-form">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search for items and brands" aria-label="Search">
-                </div>              
-                <a class="search-logo" href="/"></a>
-            </div>
-           
-            <div class="profile">
-                <a class="cart" href="/cart"></a>
-                <a class="user-profile" href="/account"></a>
-                <a class="logout" href="/"></a>
-            </div>
-            
-        </nav> -->
-    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a style="font-size: 32px;" class="navbar-brand" href="/">JUST SPORT</a>
       <div class="collapse navbar-collapse" id="main_nav">
       <ul class="navbar-nav">
           @foreach ($categories as $category)
         <li class="nav-item dropdown has-megamenu">
-          <a a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{$category->title}}
           </a>
-            <div style="margin-top: -1px; width: 69%; margin-left: 300px;" class="dropdown-menu megamenu" role="menu">
+            <div style="margin-top: -1px; width: 69%; margin-left: 300px; background-color: whitesmoke; margin-top: -6px;" class="dropdown-menu megamenu" role="menu">
               <div class="row">
                 <div class="col-md-3">
                   <div class="col-megamenu"> 
                     @if ($category->children) 
                       @foreach ($category->children as $child)
                         <div class="categ">
-                          <h5 class="category-title">{{$child->title}}</h5>
+                          <h5 style="font-weight: bold;" class="category-title">{{$child->title}}</h5>
                           @foreach ($child->children as $child2)
-                            <a class="dropdown-item" href="{{route('showCategory', $child2->alias)}}">{{$child2->title}}</a>
+                            <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('showCategory', $child2->alias)}}">{{$child2->title}}</a>
                           @endforeach  
                         </div>
                       @endforeach
@@ -128,18 +86,3 @@
 @yield('custom_js')
     </body>     
 </html>
-
-<script>
- $(document).ready(function(){
-  $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideDown("slow");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideUp("fast");
-            $(this).toggleClass('open');       
-        }
-    );  
-});
-</script>
