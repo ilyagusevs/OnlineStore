@@ -1,23 +1,45 @@
 .navbar-brand {
     font-family: 'Lilita One', cursive;
-    margin-left: 15px;
+    margin-left: 300px;  
 }
 
-.search-form {
-    width: 500px;
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 7px;
+    border: 1px solid grey;
+    margin-left: 120px;
 }
 
-.search-logo {
-    content: url("images/search.png");
-    width: 30px;
+.search_input{
+    color: black;
+    border: 0;
+    outline: 0; 
+}
+
+.search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+}
+
+.search_icon{
     height: 30px;
-    margin: 5px;
-    margin-right: 350px;
-    margin-left: 10px;
+    width: 30px;
+    float: right;
+    display: flex;
+    color:grey;
+    text-decoration:none;
+    padding: 4px;
 }
 
-.search {
+.profile {
     display: flex;
+    margin-right: 300px;
 }
 
 .cart {
@@ -41,7 +63,6 @@
     width: 30px;
     height: 30px;
     margin: 5px;
-    margin-right: 15px;
 }
 
 .facebook {
@@ -74,3 +95,40 @@ footer {
     flex-direction: column;
     min-height: 100vh;
 }
+
+@media all and (min-width: 992px) {
+	.navbar{ padding-top: 0; padding-bottom: 0; }
+	.navbar .has-megamenu{position:static!important;}
+	.navbar .megamenu{left:0; right:0; width:100%; padding:35px;  }
+	.navbar .nav-link{ padding-top:1rem; padding-bottom:1rem;  }
+}
+
+.categ {
+    display: table-cell;
+    padding-right: 300px;  
+    
+}
+
+.col-megamenu {
+    display: table;
+    border-spacing: 10px; /*Optional*/
+}
+
+.nav-item {
+    width: 100px;
+    height: 50px;
+}
+
+.nav-item a{
+    text-align: center;
+}
+
+.nav-item a:hover{
+    background-color: whitesmoke;
+}
+
+.dropdown-menu .dropdown-item:hover{
+    color: red;
+    background-color: white;
+}
+
