@@ -18,6 +18,10 @@
     color: black;
     border: 0;
     outline: 0; 
+    background: none;
+    width: 0;
+    text-align: left;
+    margin-top: -5px;
 }
 
 .search_input{
@@ -41,27 +45,14 @@
     margin-right: 300px;
 }
 
-.cart {
-    content: url("images/cart-icon.png");
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    margin-right: 15px;
+.fa {
+    text-decoration: none;
+    margin-right: 30px;
+    color: black;
 }
 
-.user-profile {
-    content: url("images/user-profile.png");
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    margin-right: 15px;
-}
-
-.logout {
-    content: url("images/logout.png");
-    width: 30px;
-    height: 30px;
-    margin: 5px;
+.fa:hover {
+    color: cornflowerblue;
 }
 
 .facebook {
