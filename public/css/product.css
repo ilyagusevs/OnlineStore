@@ -1,12 +1,12 @@
-
 .details_image_large img {
     width: 500px;
     height: 500px;
+    background-color: rgb(240, 240, 240, 0.3);
 }
 
 .product_details {
     margin-top: 50px;
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .price {
@@ -19,16 +19,17 @@
 }
 
 .details_discount{
-    color: red;
     text-decoration: line-through;
-    font-size: 20px;
+    font-size: 16px;
+    margin-top: 5px;
 }
 
 .details_price {
-    color:green; 
+    color:red; 
     margin-left: 10px;
     margin-bottom: 20px;
     font-size: 20px;
+    font-weight: bold;
 }
 
 .in_stock_container {
@@ -83,7 +84,7 @@
 }
 
 .btn {
-    width: 600px;
+    width: 620px;
 }
 
 span {
@@ -105,6 +106,7 @@ span {
     font-size: 32px;
   
 }
+
 input{
     height: 34px;
     width: 100px;
