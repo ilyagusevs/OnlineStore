@@ -19,10 +19,6 @@ use App\Models\Category;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.navbar-footer');
-// });
-
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/category/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
@@ -32,4 +28,5 @@ Route::get('/category/{categ}/{product_id}', [ProductController::class, 'showPro
 Route::get('/cart', [CartController::class, 'cart']);
 
 Route::get('/account', [AccountController::class, 'account']);
+
 
