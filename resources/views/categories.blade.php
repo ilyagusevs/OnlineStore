@@ -5,16 +5,14 @@
 @section('content')
     <head>
         <link rel="stylesheet" href="/css/categories.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
     </head>   
 
-    <div class="home-title"><h1>{{$categ->title}}</h1></div>
+    <h1>{{$categ->title}}</h1>
 
     <div class="products">
         <div class="container">
                 <div class="row">
                     <div class="col">
-
                         <!-- Product Sorting -->
                         <div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
                         <div class="results">Showing <span>{{$products->count()}}</span> results</div>
@@ -50,41 +48,45 @@
                                 }
                             @endphp
                            <div class="product">
-                                <div class="product_image"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}">
+                                <div class="product_image">
+                                    <a href="{{route('showProduct',[$product->category['alias'], $product->id])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
-                                        <div class="product_title"><a href="{{route('showProduct',[$product->category['alias'], $product->id])}}">{{$product->title}}</a></div>
-                                        @if($product->new_price != null)
-                                            <div style="text-decoration: line-through">&euro; {{$product->old_price}}</div>
-                                            <div class="product_price">&euro; {{$product->new_price}}</div>
-                                        @else
-                                            <div class="product_price">&euro; {{$product->price}}</div>
-                                        @endif      
+                                        <div class="product_title">{{$product->brand}} {{$product->title}}</div>
+                                            <div class="prices">
+                                            @if($product->new_price != $product->old_price)
+                                                <div class="product_price" >&euro; {{$product->old_price}}</div>
+                                                <div class="product_new_price">&euro; {{$product->new_price}}</div>
+                                            @else
+                                                <div class="product_price1">&euro; {{$product->old_price}}</div>
+                                            @endif    
+                                        </div>  
                                     </div>    
                                 </div>
                            </div>
-                        @endforeach
+                        @endforeach                      
                     </div>
                 </div>
+                {{$products->appends(request()->query())->links('pagination.pagination')}}
             </div>
         </div>
     </div>
+    
     
 
 @endsection
 
 @section('custom_js')
     <script>
-        $(document).ready(function () {
+       $(document).ready(function () {
             $('.product_sorting_btn').click(function () {
                 let orderBy = $(this).data('order')
-                $('.sorting_text').text($(this).find('span').text()) // чтобы отображалась сортировка в окошке, когда выбрали
-               
+                $('.sorting_text').text($(this).find('span').text())
                 $.ajax({
                     url: "{{route('showCategory',$categ->alias)}}",
                     type: "GET",
                     data: {
-                        orderBy: orderBy
-                       
+                        orderBy: orderBy,
+                        page: {{isset($_GET['page']) ? $_GET['page'] : 1}},
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -93,9 +95,12 @@
                         let positionParameters = location.pathname.indexOf('?');
                         let url = location.pathname.substring(positionParameters,location.pathname.length);
                         let newURL = url + '?'; // http://127.0.0.1:8001/category/mens_clothing?
-                        newURL += 'orderBy=' + orderBy; // http://127.0.0.1:8001/category/mens_clothing?orderBy=price-low-high
+                        newURL += 'orderBy=' + orderBy + "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"; // http://127.0.0.1:8001/category/mens_clothing?orderBy=price-low-high
                         history.pushState({}, '', newURL);
-
+                        $('.product_pagination a').each(function(index, value){
+                            let link= $(this).attr('href')
+                            $(this).attr('href',link+'&orderBy='+orderBy)
+                        })
                         $('.product_grid').html(data)
                         $('.product_grid').isotope('destroy')
                         $('.product_grid').imagesLoaded( function() {
@@ -108,7 +113,6 @@
                                     }
                             });
                         });
-                         
                     }
                 });
             })

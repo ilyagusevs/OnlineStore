@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="/css/categories.css">
+</head> 
+
 @foreach($products as $product)  
     @php
         $image = '';
@@ -8,16 +12,19 @@
                                 }
     @endphp
     <div class="product">
-        <div class="product_image"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}">
+        <div class="product_image">
+            <a href="{{route('showProduct',[$product->category['alias'], $product->id])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
             <div class="product_content">
-                <div class="product_title"><a href="{{route('showProduct',[$product->category['alias'], $product->id])}}">{{$product->title}}</a></div>
-                    @if($product->new_price != null)
-                        <div style="text-decoration: line-through">&euro; {{$product->old_price}}</div>
-                        <div class="product_price">&euro; {{$product->new_price}}</div>
+                <div class="product_title">{{$product->brand}} {{$product->title}}</div>
+                <div class="prices">
+                    @if($product->new_price != $product->old_price)
+                        <div class="product_price" >&euro; {{$product->old_price}}</div>
+                        <div class="product_new_price">&euro; {{$product->new_price}}</div>
                     @else
-                        <div class="product_price">&euro; {{$product->price}}</div>
-                    @endif      
+                        <div class="product_price1">&euro; {{$product->old_price}}</div>
+                    @endif    
+                </div>  
             </div>    
         </div>
     </div>
-@endforeach
+@endforeach  
