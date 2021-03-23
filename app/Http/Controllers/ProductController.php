@@ -17,10 +17,12 @@ class ProductController extends Controller
     }
 
     public function showCategory(Request $request, $categ_alias){
+        
         $categ = Category::where('alias',$categ_alias)->first();
 
-        $paginate = 2;
+        $paginate = 4;        
         $products = Product::where('category_id',$categ->id)->paginate($paginate);
+        
 
         if(isset($request->orderBy)){
             if($request->orderBy == 'price-low-high'){
@@ -29,12 +31,7 @@ class ProductController extends Controller
             if($request->orderBy == 'price-high-low'){
                 $products = Product::where('category_id',$categ->id)->orderBy('new_price','desc')->paginate($paginate);
             }
-            if($request->orderBy == 'name-a-z'){
-                $products = Product::where('category_id',$categ->id)->orderBy('title')->paginate($paginate);
-            }
-            if($request->orderBy == 'name-z-a'){
-                $products = Product::where('category_id',$categ->id)->orderBy('title','desc')->paginate($paginate);
-            }
+
         }
 
         if($request->ajax()){
@@ -45,7 +42,7 @@ class ProductController extends Controller
 
         return view('categories',[
             'categ' => $categ,
-            'products' => $products,
+            'products' => $products
         ]);
     }
 
