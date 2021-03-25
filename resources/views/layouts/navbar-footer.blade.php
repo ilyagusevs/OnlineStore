@@ -70,14 +70,18 @@
 		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
             <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>
               <ul class="dropdown-menu dropdown-menu-right">
-                <li class="auth"><a class="login" href="/login">Sign in </a><i>|</i><a class="register" href="/register">Join</a></li>
+                @guest
+                  <li class="auth"><a class="login" href="{{route('login')}}">Sign in </a><i>|</i><a class="register" href="{{route('register')}}">Join</a></li>
+                @endguest
+                @auth
+                  <li class="auth" style="font-weight: bold; font-family: 'Montserrat', sans-serif;" >Hello<a class="signout" href="{{route('get-logout')}}">Sign Out</a></li>
+                @endauth
                 <hr style="margin-top: -10px;">
                 <a class="dropdown-item" href="/account"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
                 <a class="dropdown-item" href="/"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
               </ul>
 		      </li>
-	      </ul>
-        <a style="margin-top: 25px; margin-left: 10px;" class="fa fa-sign-out fa-lg" href="/"></a>
+	      </ul> 
       </div>
     </nav>
         
