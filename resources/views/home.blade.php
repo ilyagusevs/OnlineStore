@@ -9,8 +9,6 @@
     </head>   
 
 
-
-
     <div class="sale"></div>
     <div class="container">
         <div class="homeImage"></div>
