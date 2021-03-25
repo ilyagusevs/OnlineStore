@@ -1,7 +1,9 @@
 .navbar-brand {
     font-family: 'Lilita One', cursive;
-    margin-left: 300px;  
+    text-align: center;
+    margin-left: 300px;
 }
+
 
 .searchbar{
     margin-bottom: auto;
@@ -43,6 +45,7 @@
 .profile {
     display: flex;
     margin-right: 300px;
+    margin-bottom: 10px;
 }
 
 .fa {
@@ -53,6 +56,25 @@
 
 .fa:hover {
     color: cornflowerblue;
+}
+
+.auth {
+    margin-bottom: 20px;
+}
+
+.login, .register{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+.login {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.register {
+    margin-left: 10px;
 }
 
 .facebook {
@@ -100,8 +122,10 @@ footer {
     .navbar .col-megamenu {display: table; border-spacing: 10px; }
     .navbar .nav-item {width: 100px; height: 50px;}
     .navbar .dropdown-menu .dropdown-item:hover{color: cornflowerblue; background-color: whitesmoke;} 
-    
+    .navbar .dropdown-menu-right{ width: 200px; height: 150px; background-color: whitesmoke; }
+
 }
+
 
 
 

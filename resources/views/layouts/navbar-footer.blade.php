@@ -13,6 +13,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d5003edbf4.js" crossorigin="anonymous"></script>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
@@ -21,7 +23,7 @@
   </head>   
   <body>
     <div class="page">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a style="font-size: 32px;" class="navbar-brand" href="/">JUST SPORT</a>
       <div class="collapse navbar-collapse" id="main_nav">
       <ul class="navbar-nav">
@@ -63,9 +65,19 @@
     </div>            
         
       <div class="profile">
-        <a  class="fa fa-shopping-cart fa-2x" href="/cart"></a>
-        <a class="fa fa-user fa-2x" href="/account"></a>
-        <a class="fa fa-sign-out fa-2x" href="/"></a>
+        <a style="margin-top: 25px; margin-right: 22px;" class="fa fa-shopping-cart fa-lg" href="/cart"></a>
+        <ul class="navbar-nav">
+		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
+            <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="auth"><a class="login" href="/login">Sign in </a><i>|</i><a class="register" href="/register">Join</a></li>
+                <hr style="margin-top: -10px;">
+                <a class="dropdown-item" href="/account"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
+                <a class="dropdown-item" href="/"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
+              </ul>
+		      </li>
+	      </ul>
+        <a style="margin-top: 25px; margin-left: 10px;" class="fa fa-sign-out fa-lg" href="/"></a>
       </div>
     </nav>
         
