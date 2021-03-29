@@ -19,15 +19,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/category/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
-
 Route::get('/category/{categ}/{title}', [ProductController::class, 'showProduct'])->name('showProduct');
 
-Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->where('id', '[0-9]+')->name('cart-add');
+Route::post('/cart/plus/{id}', [CartController::class, 'cartPlus'])->where('id', '[0-9]+')->name('cart-plus');
+Route::post('/cart/minus/{id}', [CartController::class, 'cartMinus'])->where('id', '[0-9]+')->name('cart-minus');
+Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->where('id', '[0-9]+')->name('cart-remove');
+Route::post('/cart/clear', [CartController::class, 'cartClear'])->name('cart-clear');
 
-Route::get('/account', [AccountController::class, 'account']);
 
 Auth::routes([
     'reset' => false,
@@ -37,3 +40,6 @@ Auth::routes([
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/account', [AccountController::class, 'account']);
+});

@@ -65,7 +65,11 @@
     </div>            
         
       <div class="profile">
-        <a style="margin-top: 25px; margin-right: 22px;" class="fa fa-shopping-cart fa-lg" href="/cart"></a>
+          <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="/cart">
+            <div class="cart-count"> 
+              @if ($positions) ({{ $positions }}) @endif
+            </div>
+          </a>
         <ul class="navbar-nav">
 		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
             <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>

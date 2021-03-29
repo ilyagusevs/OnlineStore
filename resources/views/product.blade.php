@@ -45,6 +45,8 @@
                 </div>
                 <!-- Product Content -->
                 <div class="col-lg-6">
+                <form action="{{route('cart-add', ['id' => $item->id])}}" method="POST">
+                @csrf
                     <div class="details_content">
                         <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->brand}} {{$item->title}}</h2></div>
                         <div class="price">
@@ -68,24 +70,18 @@
                             <p>{{$item->description}}</p>
                         </div>
 
-                        <!-- Product Quantity -->
-                        <div class="number">
-                            <a style="font-weight: bold;">Quantity : </a>
-                            <span class="minus">-</span>
-                            <input type="text" value="1"/>
-                            <span class="plus">+</span>
                         </div>
-                        </div>
-                        @if($item->in_stock)
-                            <button style="margin-top: 20px;" type="button" class="btn btn-success">Add to cart</button>  
-                        @else
-                            <button style="margin-top: 20px;" type="button" class="btn btn-success" disabled>Add to cart</button>  
-                        @endif
+                            @if($item->in_stock)
+                                <button style="margin-top: 20px;" type="submit" class="btn btn-success">Add to cart</button>  
+                            @else
+                                <button style="margin-top: 20px;" type="submit" class="btn btn-success" disabled>Add to cart</button>  
+                            @endif
+                        @csrf
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection

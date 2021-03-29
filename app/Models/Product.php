@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public function images(){
-        return $this->hasMany('App\Models\ProductImage');
+        return $this->hasMany(ProductImage::class);
     }
 
     public function category(){
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
+    }
+    
+
+    public function carts() {
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
 }
