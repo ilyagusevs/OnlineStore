@@ -9,12 +9,8 @@ class Category extends Model
 {
 
     public function products(){
-        return $this->hasManyThrough(Product::class, Category::class, 'parent_id', 'category_id', 'id', 'id');
+        return $this->hasMany(Product::class);
     }
-
-//    public function products(){
-//          return $this->hasMany('App\Models\Product');
-//     }
 
     public function parent() {
         return $this->belongsTo(Category::class, 'parent_id');
