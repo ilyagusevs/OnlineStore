@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Cart;
+use App\Models\User;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('cart.checkout', function($view) {
             $view->with(['positions' => Cart::getCount()]);
         });
+
+       
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use App\Models\Cart;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with(compact('categories'));
         });
 
-      
+        Blade::if('admin', function () {
+            return Auth::check() && Auth::user()->isAdmin();
+        });
 
         date_default_timezone_set('Europe/Riga');
     }

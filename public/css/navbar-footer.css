@@ -140,6 +140,18 @@ footer {
     margin-left: 5px;
 }
 
+.admin-panel {
+    width: 120px;
+}
+
+.admin-panel a {
+    margin-top: 22px; 
+    display: flex;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
 
 
 
