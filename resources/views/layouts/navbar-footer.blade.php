@@ -65,7 +65,7 @@
     </div>            
         
       <div class="profile">
-          <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="/cart">
+          <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="{{route('cart')}}">
             <div class="cart-count"> 
               @if ($positions) ({{ $positions }}) @endif
             </div>
@@ -78,7 +78,7 @@
                   <li class="auth"><a class="login" href="{{route('login')}}">Sign in </a><i>|</i><a class="register" href="{{route('register')}}">Join</a></li>
                 @endguest
                 @auth
-                  <li class="auth" style="font-weight: bold; font-family: 'Montserrat', sans-serif;" >Hello<a class="signout" href="{{route('get-logout')}}">Sign Out</a></li>
+                  <li class="auth" style="font-weight: bold; font-family: 'Montserrat', sans-serif; margin-left: 15px;" >Hi {{ auth()->user()->firstname }}<a class="signout" href="{{route('get-logout')}}">Sign Out</a></li>
                 @endauth
                 <hr style="margin-top: -10px;">
                 <a class="dropdown-item" href="/account"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
