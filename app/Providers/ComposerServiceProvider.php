@@ -32,5 +32,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('layouts.navbar-footer', function($view) {
             $view->with(['positions' => Cart::getCount()]);
         });
+
+        View::composer('cart.checkout', function($view) {
+            $view->with(['positions' => Cart::getCount()]);
+        });
     }
 }

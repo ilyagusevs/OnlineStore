@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Cookie;
 
 class Cart extends Model
 {
+
+
     public function products() {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
@@ -55,8 +57,7 @@ class Cart extends Model
         // update the `updated_at` field of the `carts` table
         $this->touch();
     }
-    
-     
+         
     // Returns the cart object; 
     // If not found - creates a new one
     public static function getCart() {
@@ -80,6 +81,14 @@ class Cart extends Model
             return 0;
         }
         return self::getCart()->products->count();
+    }
+
+    public function getAmount() {
+        $amount = 0.0;
+        foreach ($this->products as $product) {
+            $amount = $amount + $product->new_price * $product->pivot->quantity;
+        }
+        return $amount;
     }
 
 }

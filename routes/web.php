@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/category/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
-Route::get('/category/{categ}/{title}', [ProductController::class, 'showProduct'])->name('showProduct');
+Route::get('/category/{categ}/{alias}', [ProductController::class, 'showProduct'])->name('showProduct');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->where('id', '[0-9]+')->name('cart-add');
@@ -31,6 +32,9 @@ Route::post('/cart/minus/{id}', [CartController::class, 'cartMinus'])->where('id
 Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->where('id', '[0-9]+')->name('cart-remove');
 Route::post('/cart/clear', [CartController::class, 'cartClear'])->name('cart-clear');
 
+Route::get('/cart/checkout', [CartController::class, 'cartCheckout'])->name('cart-checkout');
+Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart-saveorder');
+Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
 
 Auth::routes([
     'reset' => false,
