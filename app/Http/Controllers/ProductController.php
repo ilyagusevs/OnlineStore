@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function showProduct($categ, $title){
-        $item = Product::where('title',$title)->first();
+    public function showProduct($categ, $alias){
+        $item = Product::where('alias',$alias)->first();
 
         return view('product',[
             'item' => $item

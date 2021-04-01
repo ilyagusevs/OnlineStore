@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
 	        $table->float('new_price');
             $table->boolean('in_stock');
             $table->text('description');
+            $table->string('alias');
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // ja idzēš kategoriju, tad produkti izdzēšas arī
             $table->timestamps();
