@@ -83,6 +83,16 @@
                 <th></th>
             </tr>
         </table>
+        @auth
+            <a href="{{ route('cart-checkout') }}" class="btn btn-success float-right">
+                Checkout
+            </a>
+        @endauth
+        @guest
+            <a href="{{ route('login') }}" class="btn btn-success float-right">
+                Checkout
+            </a>
+        @endguest
     @else
         <h5 style="text-align: center;">Cart is empty!</h5>
     @endif
