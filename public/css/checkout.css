@@ -91,27 +91,6 @@ a {
     margin-top: 15px;
 }
 
-
-
-.forgot-password {
-    color:black;
-    text-decoration: none;
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: gray;
-}
-
-.log-reg {
-    float: right; 
-    font-size: 14px;
-    margin-bottom: 20px;
-    text-decoration: none;
-    color: black;
-}
-
 .product-count {
     display: flex;
     
@@ -164,7 +143,6 @@ img {
 .product-qty {
     display: flex;
 }
-
 
 
 .my-4 {

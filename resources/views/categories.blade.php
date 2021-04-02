@@ -54,10 +54,10 @@
                                         <div class="product_title">{{$product->brand}} {{$product->title}}</div>
                                             <div class="prices">
                                             @if($product->new_price != $product->old_price)
-                                                <div class="product_price" >&euro; {{$product->old_price}}</div>
-                                                <div class="product_new_price">&euro; {{$product->new_price}}</div>
+                                                <div class="product_price" >&euro; {{ number_format($product->old_price, 2, '.', '') }}</div>
+                                                <div class="product_new_price">&euro; {{ number_format($product->new_price, 2, '.', '') }}</div>
                                             @else
-                                                <div class="product_price1">&euro; {{$product->old_price}}</div>
+                                                <div class="product_price1">&euro; {{ number_format($product->old_price, 2, '.', '') }}</div>
                                             @endif    
                                         </div>  
                                     </div>    

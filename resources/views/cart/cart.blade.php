@@ -6,33 +6,30 @@
 <head>
     <link rel="stylesheet" href="/css/cart.css">
 </head>
-<div class="container">
-    <h1 style="text-align: center;">Cart</h1>
-    @if (count($products))
+<div class="container">  
+<!--Section: Block Content-->
+@if (count($products))
     @php
         $cartCost = 0;
+        $delivery = 10;
     @endphp
-        <form action="{{ route('cart-clear') }}" method="post" class="text-right">
-            @csrf
-            <button type="submit" class="btn btn-outline-danger mb-4 mt-0 pull-right">
-                Clear cart
-            </button>
-        </form>
-        <table class="table table-bordered">
-            <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-                <th></th>
-            </tr>
-            
+<section>
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-8">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4 wish-list">
             @foreach($products as $product)
                 @php
-                    $itemPrice = $product->new_price;
-                    $itemQuantity =  $product->pivot->quantity;
-                    $itemCost = $itemPrice * $itemQuantity;
-                    $cartCost = $cartCost + $itemCost;
+                    $productNewPrice = $product->new_price;
+                    $productOldPrice = $product->old_price;
+                    $productQuantity =  $product->pivot->quantity;
+                    $productCost = $productNewPrice * $productQuantity;
+                    $cartCost = $cartCost + $productCost;
 
                     $image = '';
                     if(count($product->images) > 0){
@@ -41,60 +38,112 @@
                         $image = 'no_image.png';
                     }
                 @endphp
-                <tr>
-                    <td>
-                        <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['alias'], $product->title])}}" >
-                            <img height="56px" src="/css/productImages/{{$image}}" alt="{{$product->title}}">
-                            {{$product->brand}} {{$product->title}}
-                        </a>
-                    </td>
-                    <td>&euro; {{ number_format($itemPrice, 2, '.', '') }}</td>
-                    <td>
-                    <form action="{{ route('cart-minus', ['id' => $product->id]) }}" method="post" class="d-inline">
-                        @csrf
-                            <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                <i class="fas fa-minus-square"></i>
-                            </button>
-                        </form>
-                        <span class="mx-1">{{ $itemQuantity }}</span>
-                        <form action="{{ route('cart-plus', ['id' => $product->id]) }}"
-                            method="post" class="d-inline">
-                            @csrf
-                            <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                <i class="fas fa-plus-square"></i>
-                            </button>
-                    </form>
-                    </td>
-                    <td>&euro; {{ number_format($itemCost, 2, '.', '') }}</td>
-                    <td>
-                        <form action="{{ route('cart-remove', ['id' => $product->id]) }}"
-                              method="post">
-                            @csrf
-                            <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                <i class="fas fa-trash-alt text-danger"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            <tr>
-                <th colspan="3" style="text-align: right;">Total</th>
-                <th>&euro; {{ number_format($cartCost, 2, '.', '') }}</th>
-                <th></th>
-            </tr>
-        </table>
-        @auth
-            <a href="{{ route('cart-checkout') }}" class="btn btn-success float-right">
-                Checkout
-            </a>
-        @endauth
-        @guest
-            <a href="{{ route('login') }}" class="btn btn-success float-right">
-                Checkout
-            </a>
-        @endguest
-    @else
-        <h5 style="text-align: center;">Cart is empty!</h5>
-    @endif
+                <form action="{{ route('cart-remove', ['id' => $product->id]) }}" method="post">
+                    @csrf
+                    <button style="float: right;" type="submit" class="btn-close" aria-label="Close"></button>
+                </form>
+            <div class="row mb-4">
+                <div class="col-md-5 col-lg-3 col-xl-3">
+                    <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['alias'], $product->alias])}}" >
+                        <img class="img-fluid w-100" src="/css/productImages/{{$image}}" alt="{{$product->alias}}">
+                    </a>
+                </div>
+                <div class="col-md-7 col-lg-9 col-xl-9">
+                    <div>
+                        <div class="d-flex justify-content-between">
+                        <div>
+                            @if($productNewPrice != $productOldPrice)
+                                <div class="price">
+                                    <p class="newprice" >&euro; {{ number_format($productNewPrice, 2, '.', '') }}</p>
+                                    <p class="oldprice" >&euro; {{ number_format($productOldPrice, 2, '.', '') }}</p>
+                                </div>    
+                            @else
+                                <p style="font-weight: bold;">&euro; {{ number_format($productOldPrice, 2, '.', '') }}</p>
+                            @endif
+                            <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['alias'], $product->alias])}}" >
+                                <p class="mb-3 text-muted">{{$product->brand}} {{$product->title}}</p>
+                            </a>
+                            <form action="{{ route('cart-minus', ['id' => $product->id]) }}" method="post" class="d-inline">
+                                @csrf
+                                <span>Qty:</span>
+                                <button type="submit" class="m-0 p-0 border-0 bg-transparent">
+                                    <i style="margin-left: 10px;" class="fas fa-minus-square"></i>
+                                </button>
+                            </form>
+                            <span class="mx-1">{{ $productQuantity }}</span>
+                            <form action="{{ route('cart-plus', ['id' => $product->id]) }}"
+                                method="post" class="d-inline">
+                                @csrf
+                                <button type="submit" class="m-0 p-0 border-0 bg-transparent">
+                                    <i class="fas fa-plus-square"></i>
+                                </button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <hr class="my-4">
+        @endforeach
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <div class="pt-4">
+                <h5 style="font-weight: bold;" class="mb-3">TOTAL</h5>
+                <hr class="my-4">
+                <ul class="list-group list-group-flush">
+                    <li style="font-weight: bold;" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                    Sub-total
+                    <span style="font-weight: 100;">&euro; {{ number_format($cartCost, 2, '.', '') }}</span>
+                    </li>
+                    <li style="font-weight: bold;" class="list-group-item d-flex justify-content-between align-items-center px-0">
+                    Delivery
+                    <span style="font-weight: 100;"> 
+                        @if($cartCost > 30)
+                            <p style="margin-left:auto;">Free</p>
+                        @else
+                            <p style="margin-left:auto;">&euro; {{ number_format($delivery, 2, '.', '') }}</p>
+                        @endif
+                    </span>
+                    </li>
+                </ul>
+                <hr class="my-4">
+                @auth
+                    <div class="text-center">
+                        <a href="{{ route('cart-checkout') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
+                    </div>
+                @endauth
+                @guest
+                    <div class="text-center">
+                        <a href="{{ route('login') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
+                    </div>
+                @endguest
+                <div class="text-center">
+                    <p style="margin-top: 20px;"><strong>Free delivery</strong> on orders over &euro; 30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+@else
+<div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-sm-12 empty-cart-cls text-center"><i class="fa fa-shopping-cart fa-4x"></i>
+                <br>
+                <h3><strong><br>Your cart is empty!</strong></h3>
+            </div>
+        </div>
+    </div>
 </div>
+@endif
+</div><!-- /container -->
 @endsection

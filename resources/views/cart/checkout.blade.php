@@ -41,7 +41,7 @@
                 <div class="products">
                     <div class="container">
                     <div class="products-count">
-                        <p>{{$positions}} ITEMS</p>
+                        <p>{{$positions}} ITEM(S)</p>
                         <p style="margin-left: auto;"><a class="back-to-cart" href="{{route('cart')}}">Edit</a></p>
                     </div>
                     <hr class="my-4">                  
@@ -73,12 +73,12 @@
                     @endforeach
                     <hr class="my-4">
                     <div class="total-price">
-                        <p>Subtotal</p>
+                        <p>Sub-total</p>
                         <p style="margin-left:auto;" >&euro; {{ number_format($cartCost, 2, '.', '') }}</p>
                     </div>
                     <div class="delivery">
                         <p>Delivery</p>
-                        @if($productCost > 30)
+                        @if($cartCost > 30)
                             <p style="margin-left:auto;">Free</p>
                         @else
                             <p style="margin-left:auto;">&euro; {{ number_format($delivery, 2, '.', '') }}</p>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="total-pay">
                         <p>TOTAL TO PAY</p>
-                        @if($productCost > 30)
+                        @if($cartCost > 30)
                             <p style="margin-left:auto;">&euro; {{ number_format($cartCost, 2, '.', '') }}</p>
                         @else
                             <p style="margin-left:auto;">&euro; {{ number_format($cartCostWithDelivery, 2, '.', '') }}</p>

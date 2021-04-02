@@ -18,15 +18,21 @@
    
 }
 
-.details_discount{
+.oldprice{
     text-decoration: line-through;
     font-size: 16px;
     margin-top: 5px;
 }
 
-.details_price {
+.newprice {
     color:red; 
     margin-left: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.oldprice1 {
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold;

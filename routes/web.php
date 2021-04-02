@@ -30,7 +30,6 @@ Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->where('id', '
 Route::post('/cart/plus/{id}', [CartController::class, 'cartPlus'])->where('id', '[0-9]+')->name('cart-plus');
 Route::post('/cart/minus/{id}', [CartController::class, 'cartMinus'])->where('id', '[0-9]+')->name('cart-minus');
 Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->where('id', '[0-9]+')->name('cart-remove');
-Route::post('/cart/clear', [CartController::class, 'cartClear'])->name('cart-clear');
 
 Route::get('/cart/checkout', [CartController::class, 'cartCheckout'])->name('cart-checkout');
 Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart-saveorder');

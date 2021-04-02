@@ -50,11 +50,11 @@
                     <div class="details_content">
                         <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->brand}} {{$item->title}}</h2></div>
                         <div class="price">
-                            @if($item->new_price != null)
-                                <div class="details_discount">&euro; {{$item->old_price}}</div>
-                                <div class="details_price">&euro; {{$item->new_price}}</div>
+                            @if($item->new_price != $item->old_price)
+                                <div class="oldprice">&euro; {{ number_format($item->old_price, 2, '.', '') }}</div>
+                                <div class="newprice">&euro; {{ number_format($item->new_price, 2, '.', '') }}</div>
                             @else
-                                <div class="details_price">&euro; {{$item->old_price}}</div>
+                                <div class="oldprice1">&euro; {{ number_format($item->old_price, 2, '.', '') }}</div>
                             @endif
                         </div>
                         <!-- In Stock -->
