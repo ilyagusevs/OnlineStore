@@ -101,7 +101,7 @@ class CartController extends Controller
         } else {
             // If the buyer came here by accident, not after placing the order, then
             // he has nothing to do here - redirect to the cart page
-            return redirect()->route('cart.cart');
+            return redirect()->route('cart');
         }
     }
 

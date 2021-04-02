@@ -1,6 +1,10 @@
 @extends('layouts.navbar-footer')
 
 @section('content')
+<head>
+    <link rel="stylesheet" href="/css/successOrder.css">
+</head>
+<title>JUST SPORT | SUCCESS</title>
 <div class="container">
 <h1>Order placed</h1>
 
@@ -30,8 +34,10 @@
     </table>
 
     <h2>Your data</h2>
-    <p>Location: {{$order->country}}, {{$order->city}}, {{ $order->address }}, {{$order->zipcode}}</p>
-    <p>Phone number: {{$order->phone}}</p>
+    <p>Name, Surname: <strong>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</strong></p>
+    <p>Email: <strong>{{ auth()->user()->email }}</strong></p>
+    <p>Address: <strong>{{$order->country}}, {{$order->city}}, {{ $order->address }}, {{$order->zipcode}}</strong></p>
+    <p>Phone number: <strong>{{$order->phone}}</strong></p>
 
 </div>
 

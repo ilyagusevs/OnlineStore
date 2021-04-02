@@ -23,16 +23,28 @@
                     <p id="profile-name" class="profile-name-card"></p>
                     <form  method="POST" action="{{route('cart-saveorder')}}">
                         @csrf
-                        <a>Country</a>
-                        <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country') }}" autofocus>
-                        <a>City</a>
-                        <input class="form-control @error('city') is-invalid @enderror"  id="city" type="text" name="city" value="{{ old('city') }}">
+                        <div class="row">
+                            <div class="col">
+                                <a>Country</a>
+                                <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country') }}" autofocus>
+                            </div>
+                            <div class="col">
+                                <a>City</a>
+                                <input class="form-control @error('city') is-invalid @enderror"  id="city" type="text" name="city" value="{{ old('city') }}">
+                            </div>
+                        </div>
                         <a>Phone</a>
                         <input class="form-control @error('phone') is-invalid @enderror"  id="phone" type="text" name="phone" value="{{ old('phone') }}">
-                        <a>Address</a>
-                        <input class="form-control @error('address') is-invalid @enderror"  id="address" type="text" name="address" value="{{ old('address') }}">
-                        <a>Zip Code</a>
-                        <input class="form-control @error('zipcode') is-invalid @enderror"  id="zipcode" type="text" name="zipcode" value="{{ old('zipcode') }}">
+                        <div class="row">
+                            <div class="col">
+                                <a>Address</a>
+                                <input class="form-control @error('address') is-invalid @enderror"  id="address" type="text" name="address" value="{{ old('address') }}">
+                            </div>
+                            <div class="col">
+                                <a>Zip Code</a>
+                                <input class="form-control @error('zipcode') is-invalid @enderror"  id="zipcode" type="text" name="zipcode" value="{{ old('zipcode') }}">
+                            </div>
+                        </div>
                         <div class="text-center">
                             <button class="btn btn-success" type="submit">PLACE ORDER</button>
                         </div>    

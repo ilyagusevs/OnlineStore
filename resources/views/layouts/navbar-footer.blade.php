@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d5003edbf4.js" crossorigin="anonymous"></script>
-
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
@@ -25,8 +25,11 @@
     <div class="page">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a style="font-size: 32px;" class="navbar-brand" href="/">JUST SPORT</a>
-      <div class="collapse navbar-collapse" id="main_nav">
-      <ul class="navbar-nav">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
           @foreach ($categories as $category)
         <li class="nav-item dropdown has-megamenu">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +45,6 @@
                           <h5 style="font-weight: bold;" class="category-title">{{$child->title}}</h5>
                           @foreach ($child->children as $child2)
                             <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('showCategory', $child2->alias)}}">{{$child2->title}}</a>
-                            <!-- href="{{route('showCategory', [$category->alias, $child->alias, $child2->alias])}}"  -->
                           @endforeach  
                         </div>
                       @endforeach
@@ -54,7 +56,7 @@
           @endforeach
         </li>
       </ul>
-    </div>
+    
     <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
@@ -91,6 +93,7 @@
               </ul>
 		      </li>
 	      </ul> 
+      </div>
       </div>
     </nav>
         

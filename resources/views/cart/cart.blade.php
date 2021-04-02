@@ -1,6 +1,6 @@
 @extends('layouts.navbar-footer')
 
-@section('title', 'JUST SPORT')
+@section('title', 'JUST SPORT | CART')
 
 @section('content')
 <head>
