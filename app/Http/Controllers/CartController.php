@@ -56,13 +56,6 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    // Clears the contents of the shopping cart completely
-    public function cartClear() {
-        $this->cart->delete();
-        // redirect back to the cart page
-        return redirect()->route('cart');
-    }
-
     // Saving the order in the database
     public function saveOrder(Request $request) {
         // Сhecking the data of the form
