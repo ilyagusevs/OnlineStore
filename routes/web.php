@@ -54,7 +54,8 @@ Route::group([
         Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin-orders');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('product', AdminProductController::class);
-        
+        Route::match(['get', 'post'], '/add-images/{id}', [AdminProductController::class, 'addImages']);
+        Route::get('/delete-image/{id}', [AdminProductController::class, 'deleteImage']);
     });
 
     

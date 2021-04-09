@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Image;
 
 class AdminProductController extends Controller
 {
@@ -43,8 +45,17 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $product = Product::create($data);
+        $this->validate($request, [
+            'title' => 'required|max:100',
+            'brand_id' => 'integer',
+            'old_price' => 'required|max:100',
+            'new_price' => 'required|max:100',
+            'in_stock' => '',
+            'description' => 'required|max:500',
+            'alias' => 'required|max:100|unique:products,alias|alpha_dash',
+            'category_id' => 'integer',
+        ]);
+        $product = Product::create($request->all());
         return redirect()
             ->route('admin.product.show', ['product' => $product->id])
             ->with('success', 'New product successfully added!');
@@ -89,7 +100,7 @@ class AdminProductController extends Controller
         $product->update($data);
         return redirect()
             ->route('admin.product.show', ['product' => $product->id])
-            ->with('successEdit', 'Product successfully updated!');
+            ->with('success', 'Product successfully updated!');
     }
 
     /**
@@ -103,6 +114,47 @@ class AdminProductController extends Controller
         $product->delete();
         return redirect()
             ->route('admin.product.index')
-            ->with('successDelete', 'Product successfully deleted!');
+            ->with('success', 'Product successfully deleted!');
+    }
+
+    public function addImages(Request $request, $id) {
+
+        $productData = Product::with('images')->select('id', 'title', 'alias')->find($id);
+
+
+        if($request->isMethod('post')){
+            if($request->hasFile('images')){
+                $images = $request->file('images');
+                foreach($images as $key => $img) {
+                    $productImage = new ProductImage;
+                    $image_tmp = Image::make($img);
+                    $slug = $productData->alias;
+                    $extension = $img->getClientOriginalExtension();
+                    $imageName = $slug.rand(1,5).".".$extension;
+
+                    $path = 'css/productImages/'.$imageName;
+                    Image::make($image_tmp)->resize(520,600)->save($path);
+                    $productImage->img = $imageName;
+                    $productImage->product_id = $id;
+                    $productImage->save();
+                }
+
+                return redirect('admin/add-images/'.$id)->with('success', 'Image successfully added!');
+            }
+        }
+
+        return view('admin.product.addimages', compact('productData'));
+    }
+
+    public function deleteImage($id) {
+        $productImage = ProductImage::select('img')->where('id', $id)->first();
+        $path = 'css/productImages/';
+        if(file_exists($path.$productImage->img)) {
+            unlink($path.$productImage->img);
+        }
+
+        ProductImage::where('id', $id)->delete();
+
+        return redirect()->back()->with('success', 'Image successfully deleted!');
     }
 }
