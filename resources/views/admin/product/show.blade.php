@@ -12,18 +12,16 @@
             <p><strong>Title:</strong> {{ $product->title }}</p>
             <p><strong>Slug:</strong> {{ $product->alias }}</p>
             <p><strong>Brand:</strong> {{ $product->brand->title }}</p>
+            @if($product->in_stock)
+                <p><strong>In Stock?:</strong> YES</p>
+            @else
+                <p><strong>In Stock?:</strong> NO</p>
+            @endif
             <p><strong>Category:</strong> {{ $product->category->title }}</p>
 
         </div>
         <div class="col-md-6">
-            @php
-                $image = '';
-                if(count($product->images) > 0){
-                    $image = $product->images[0]['img'];
-                }else{
-                    $image = 'no_image.png';
-                }
-            @endphp  
+         
         </div>
         @foreach($product->images as $img)
             <img style="width: 264px;" src="/css/productImages/{{$img['img']}}" alt="{{$product->title}}">
@@ -49,6 +47,9 @@
                     Delete product
                 </button>
             </form>
+            <a class="btn btn-primary" href="{{ url('/admin/add-images/'.$product->id) }}">
+                Edit images
+            </a>
         </div>
     </div>
 @endsection

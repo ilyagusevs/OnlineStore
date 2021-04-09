@@ -2,9 +2,9 @@
 
 @section('content')
 
-    @if(Session::has('successDelete'))
+    @if(Session::has('success'))
         <div style="margin-top: 20px;" class="alert alert-success" role="alert">
- 	        {{Session::get('successDelete')}}
+ 	        {{Session::get('success')}}
         </div>
     @endif
     <h1 style="margin-top: 30px; margin-bottom: 20px;">All products</h1>

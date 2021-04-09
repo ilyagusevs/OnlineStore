@@ -45,15 +45,7 @@
             </select>
         </div>
     </div>
-    <div class="col">
-        <div class="form-group">
-            <label style="margin-bottom: 10px;">In stock?</label>
-            <select name="in_stock" class="form-control" title="Brand">
-                <option value="0">YES</option>
-                <option value="1">NO</option>
-            </select>
-        </div>
-    </div>
+
 </div>
 
 <div style="margin-top: 20px;" class="row">
@@ -79,7 +71,6 @@
     <textarea class="form-control" name="description"
               rows="4">{{ old('description') ?? $product->description ?? '' }}</textarea>
 </div>
-
 
 <div style="margin-top: 20px;" class="form-group">
     <button type="submit" class="btn btn-primary">Save product</button>

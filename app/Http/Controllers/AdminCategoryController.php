@@ -48,7 +48,7 @@ class AdminCategoryController extends Controller
         $category = Category::create($request->all());
         return redirect()
             ->route('admin.category.show', ['category' => $category->id])
-            ->with('successAdd', 'New category successfully created');
+            ->with('success', 'New category successfully created');
     }
 
     /**
@@ -101,7 +101,7 @@ class AdminCategoryController extends Controller
          $category->update($request->all());
          return redirect()
              ->route('admin.category.show', ['category' => $category->id])
-             ->with('successEdit', 'Category successfully updated');
+             ->with('success', 'Category successfully updated');
     }
 
     /**

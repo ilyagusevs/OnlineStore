@@ -6,7 +6,8 @@
 <form method="post" enctype="multipart/form-data"
           action="{{ route('admin.product.update', ['product' => $product->id]) }}">
         @method('PUT')
-        @include('admin.product.part.form')
+        @include('admin.product.part.edit-form')
+        
 </form>
 
 @endsection

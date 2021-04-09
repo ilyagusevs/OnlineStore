@@ -6,14 +6,14 @@
  	        {{Session::get('errors')->first()}}
         </div>
     @endif
-    @if(Session::has('successEdit'))
+    @if(Session::has('success'))
         <div style="margin-top: 20px;" class="alert alert-success" role="alert">
  	        {{Session::get('success')}}
         </div>
     @endif
-    @if(Session::has('successAdd'))
+    @if(Session::has('success'))
         <div style="margin-top: 20px;" class="alert alert-success" role="alert">
- 	        {{Session::get('successAdd')}}
+ 	        {{Session::get('success')}}
         </div>
     @endif
 <h1 style="margin-top: 30px; margin-bottom: 30px;">Category view</h1>

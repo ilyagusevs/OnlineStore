@@ -1,6 +1,5 @@
 @extends('admin.admin')
 
-
 @section('content')
     @if(Session::has('errors'))
         <div style="margin-top: 30px; margin-bottom: 20px;" class="alert alert-danger" role="alert">
