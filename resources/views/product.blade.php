@@ -48,7 +48,7 @@
                 <form action="{{route('cart-add', ['id' => $item->id])}}" method="POST">
                 @csrf
                     <div class="details_content">
-                        <div class="details_name" data-id="{{$item->id}}"><h2>{{$item->brand}} {{$item->title}}</h2></div>
+                        <div class="details_name" data-id="{{$item->id}}"><h2>{{ $item->brand->title }} {{$item->title}}</h2></div>
                         <div class="price">
                             @if($item->new_price != $item->old_price)
                                 <div class="oldprice">&euro; {{ number_format($item->old_price, 2, '.', '') }}</div>

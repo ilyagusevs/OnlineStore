@@ -69,7 +69,7 @@
       <div class="profile">
         @admin
           <div class="admin-panel">
-            <a href="{{route('admin-orders')}}">Admin Panel</a>
+            <a href="{{route('admin.admin-orders')}}">Admin Panel</a>
           </div>
         @endadmin
           <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="{{route('cart')}}">

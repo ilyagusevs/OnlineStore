@@ -14,7 +14,7 @@ class AlterProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-           $table->string('brand')->after('title');
+            $table->dropColumn('brand');
         });
     }
 
@@ -26,7 +26,7 @@ class AlterProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-           
+            //
         });
     }
 }

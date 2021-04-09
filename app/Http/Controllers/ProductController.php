@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,10 +17,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function showCategory(Request $request, $categ_alias){
-        
-        $categ = Category::where('alias',$categ_alias)->first();
+        public function brand($title) {
+            $brands = Brand::where('title', $title)->firstOrFail();
+            return view('categories', compact('brands'));
+        }
 
+
+    public function showCategory(Request $request, $categ_alias)
+    {    
+        $categ = Category::where('alias',$categ_alias)->first();
         $paginate = 4;        
         $products = Product::where('category_id',$categ->id)->paginate($paginate);
         
@@ -42,7 +48,7 @@ class ProductController extends Controller
 
         return view('categories',[
             'categ' => $categ,
-            'products' => $products
+            'products' => $products,
         ]);
     }
 

@@ -1,4 +1,4 @@
-@extends('auth.adminpanel.admin')
+@extends('admin.admin')
 
 @section('content')
 

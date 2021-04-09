@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d5003edbf4.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,13 +20,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Products</a>
+        <a class="nav-link" href="{{route('admin.product.index')}}">Products</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Categories</a>
+        <a class="nav-link" href="{{route('admin.category.index')}}">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('admin-orders')}}">Orders</a>
+        <a class="nav-link" href="{{route('admin.admin-orders')}}">Orders</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Users</a>

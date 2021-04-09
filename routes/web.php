@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,9 +45,24 @@ Auth::routes([
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group([
+    'as' => 'admin.',
+    'middleware' => 'auth',
+    'prefix' => 'admin'
+], function () {
     Route::group(['middleware' => 'is_admin'], function () {
-        Route::get('/adminpanel/orders', [AdminController::class, 'adminOrders'])->name('admin-orders');
+        Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin-orders');
+        Route::resource('category', AdminCategoryController::class);
+        Route::resource('product', AdminProductController::class);
+        
     });
+
+    
+
     Route::get('/account', [AccountController::class, 'account']);
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/account', [AccountController::class, 'account']);
+});
+

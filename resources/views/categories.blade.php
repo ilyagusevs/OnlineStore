@@ -51,7 +51,7 @@
                                 <div class="product_image">
                                     <a href="{{route('showProduct',[$product->category['alias'], $product->alias])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
-                                        <div class="product_title">{{$product->brand}} {{$product->title}}</div>
+                                        <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
                                             <div class="prices">
                                             @if($product->new_price != $product->old_price)
                                                 <div class="product_price" >&euro; {{ number_format($product->old_price, 2, '.', '') }}</div>

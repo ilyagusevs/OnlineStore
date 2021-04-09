@@ -6,3 +6,7 @@
 .nav-link {
     font-family: 'Montserrat', sans-serif;
 }
+
+label, h1, h2, option, th, tr, a, p, button, small {
+    font-family: 'Montserrat', sans-serif;
+}
