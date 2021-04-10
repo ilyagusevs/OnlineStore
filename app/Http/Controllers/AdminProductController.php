@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Size;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Image;
@@ -30,9 +31,9 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-         // все категории для возможности выбора родителя
+         // all categories for parent selection
          $items = Category::all();
-         // все бренды для возмозжности выбора подходящего
+         // all brands for the possibility of choosing a suitable
          $brands = Brand::all();
          return view('admin.product.create', compact('items', 'brands'));
     }
@@ -52,9 +53,11 @@ class AdminProductController extends Controller
             'new_price' => 'required|max:100',
             'in_stock' => '',
             'description' => 'required|max:500',
-            'alias' => 'required|max:100|unique:products,alias|alpha_dash',
+            'slug' => 'required|max:100|unique:products,slug|alpha_dash',
             'category_id' => 'integer',
         ]);
+
+        
         $product = Product::create($request->all());
         return redirect()
             ->route('admin.product.show', ['product' => $product->id])
@@ -119,7 +122,7 @@ class AdminProductController extends Controller
 
     public function addImages(Request $request, $id) {
 
-        $productData = Product::with('images')->select('id', 'title', 'alias')->find($id);
+        $productData = Product::with('images')->select('id', 'title', 'slug')->find($id);
 
 
         if($request->isMethod('post')){
@@ -128,7 +131,7 @@ class AdminProductController extends Controller
                 foreach($images as $key => $img) {
                     $productImage = new ProductImage;
                     $image_tmp = Image::make($img);
-                    $slug = $productData->alias;
+                    $slug = $productData->slug;
                     $extension = $img->getClientOriginalExtension();
                     $imageName = $slug.rand(1,5).".".$extension;
 
@@ -156,5 +159,47 @@ class AdminProductController extends Controller
         ProductImage::where('id', $id)->delete();
 
         return redirect()->back()->with('success', 'Image successfully deleted!');
+    }
+
+    public function addSizes(Request $request, $id) {
+        if($request->isMethod('post')) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            foreach($data['slug'] as $key => $value) {
+                if(!empty($value)) {
+                    $sizeCheck = Size::where(['product_id'=>$id, 'size'=>$data['size'][$key]])->count();
+                    if($sizeCheck > 0) {
+                        return redirect()->back()->with('error', 'Size already exists! Please add another size!');                    
+                    }
+                    $attribute = new Size;
+                    $attribute->product_id = $id;
+                    $attribute->slug = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->save();                  
+                }
+            }
+          return redirect()->back()->with('success', 'Size(s) successfully added!');
+        }
+
+        $productData = Product::find($id);
+        return view('admin.product.addsizes', compact('productData'));
+    }
+
+    public function editSizes(Request $request, $id) {
+        if($request->isMethod('post')) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            foreach($data['size_id'] as $key => $siz) {
+                if(!empty($siz)) {
+                    Size::where(['id'=>$data['size_id'][$key]])->update(['size'=>$data['size'][$key], 'slug'=>$data['slug'][$key]]);
+                }
+            }
+            return redirect()->back()->with('success', 'Size(s) successfully updated!');
+        }       
+    }
+
+    public function deleteSizes($id) {
+        Size::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Size(s) successfully deleted!');
     }
 }

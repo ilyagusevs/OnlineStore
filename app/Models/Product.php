@@ -16,7 +16,7 @@ class Product extends Model
         'new_price',
         'in_stock',
         'description',
-        'alias',
+        'slug',
     ];
 
     public function images(){
@@ -34,4 +34,9 @@ class Product extends Model
     public function carts() {
         return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
+
+    public function sizes() {
+        return $this->hasMany(Size::class);
+    }
+
 }

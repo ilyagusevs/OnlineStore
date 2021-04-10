@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminBrandController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/category/{categ}', [ProductController::class, 'showCategory'])->name('showCategory');
-Route::get('/category/{categ}/{alias}', [ProductController::class, 'showProduct'])->name('showProduct');
+Route::get('/category/{categ}/{slug}', [ProductController::class, 'showProduct'])->name('showProduct');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->where('id', '[0-9]+')->name('cart-add');
@@ -54,8 +55,12 @@ Route::group([
         Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin-orders');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('product', AdminProductController::class);
+        Route::resource('brand', AdminBrandController::class);
         Route::match(['get', 'post'], '/add-images/{id}', [AdminProductController::class, 'addImages']);
         Route::get('/delete-image/{id}', [AdminProductController::class, 'deleteImage']);
+        Route::match(['get', 'post'], '/add-sizes/{id}', [AdminProductController::class, 'addSizes']);
+        Route::post('/edit-sizes/{id}', [AdminProductController::class, 'editSizes']);
+        Route::get('/delete-sizes/{id}', [AdminProductController::class, 'deleteSizes']);
     });
 
     

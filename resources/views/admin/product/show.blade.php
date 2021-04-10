@@ -10,34 +10,38 @@
     <div class="row">
         <div class="col-md-6">
             <p><strong>Title:</strong> {{ $product->title }}</p>
-            <p><strong>Slug:</strong> {{ $product->alias }}</p>
+            <p><strong>Slug:</strong> {{ $product->slug }}</p>
             <p><strong>Brand:</strong> {{ $product->brand->title }}</p>
             @if($product->in_stock)
                 <p><strong>In Stock?:</strong> YES</p>
             @else
                 <p><strong>In Stock?:</strong> NO</p>
             @endif
+            <div class="sizes" style="display: flex;">
+                <strong class="size-title" style="margin-bottom: 15px;">Sizes: &nbsp;</strong>
+                @foreach($product->sizes as $size)
+                    <p>{{ $size['size'] }} &nbsp;</p>
+                @endforeach
+            </div>
             <p><strong>Category:</strong> {{ $product->category->title }}</p>
 
         </div>
-        <div class="col-md-6">
-         
-        </div>
-        @foreach($product->images as $img)
-            <img style="width: 264px;" src="/css/productImages/{{$img['img']}}" alt="{{$product->title}}">
-        @endforeach
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <p style="margin-top: 20px;"><strong>Description: </strong></p>
+        <p><strong>Description: </strong></p>
             @isset($product->description)
                 <p>{{ $product->description }}</p>
             @else
                 <p>No description</p>
             @endisset
+        <p><strong>Images: </strong></p>
+        @foreach($product->images as $img)
+            <img style="width: 264px; margin-bottom: 30px;" src="/css/productImages/{{$img['img']}}" alt="{{$product->title}}">
+        @endforeach
+    </div>
+    <div class="row">
+        <div class="col-12">
             <a href="{{ route('admin.product.edit', ['product' => $product->id]) }}"
                class="btn btn-success">
-                Edit product
+                Edit product info
             </a>
             <form method="post" class="d-inline" onsubmit="return confirm('Delete this product?')"
                   action="{{ route('admin.product.destroy', ['product' => $product->id]) }}">
@@ -48,8 +52,12 @@
                 </button>
             </form>
             <a class="btn btn-primary" href="{{ url('/admin/add-images/'.$product->id) }}">
-                Edit images
+                Edit image(s)
+            </a>
+            <a class="btn btn-secondary" href="{{ url('/admin/add-sizes/'.$product->id) }}">
+                Edit size(s)
             </a>
         </div>
     </div>
+
 @endsection
