@@ -7,6 +7,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-label, h1, h2, option, th, tr, a, p, button, small {
+label, h1, h2, option, th, tr, a, p, button, small, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.size-title {
+    font-size: 17px;
     font-family: 'Montserrat', sans-serif;
 }
