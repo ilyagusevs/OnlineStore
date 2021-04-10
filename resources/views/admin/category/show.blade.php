@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-6">
             <p><strong>Title:</strong> {{ $category->title }}</p>
-            <p><strong>Slug:</strong> {{ $category->alias }}</p>
+            <p><strong>Slug:</strong> {{ $category->slug }}</p>
         </div>
     </div>
     @if ($category->children->count())
@@ -38,7 +38,7 @@
                             {{ $child->title }}
                         </a>
                     </td>
-                    <td>{{ $child->alias }}</td>
+                    <td>{{ $child->slug }}</td>
                     <td style="display: flex;">
                         <a href="{{ route('admin.category.edit', ['category' => $child->id]) }}">
                             <i class="far fa-edit"></i>

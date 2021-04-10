@@ -49,7 +49,7 @@
                             @endphp
                            <div class="product">
                                 <div class="product_image">
-                                    <a href="{{route('showProduct',[$product->category['alias'], $product->alias])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
+                                    <a href="{{route('showProduct',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
                                         <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
                                             <div class="prices">
@@ -82,7 +82,7 @@
                 let orderBy = $(this).data('order')
                 $('.sorting_text').text($(this).find('span').text())
                 $.ajax({
-                    url: "{{route('showCategory',$categ->alias)}}",
+                    url: "{{route('showCategory',$categ->slug)}}",
                     type: "GET",
                     data: {
                         orderBy: orderBy,

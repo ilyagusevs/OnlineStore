@@ -41,7 +41,7 @@ class AdminCategoryController extends Controller
         $this->validate($request, [
             'parent_id' => 'integer',
             'title' => 'required|max:100',
-            'alias' => 'required|max:100|unique:categories,alias|alpha_dash',
+            'slug' => 'required|max:100|unique:categories,slug|alpha_dash',
         ]);
 
         // verification passed, save the category
@@ -90,12 +90,12 @@ class AdminCategoryController extends Controller
              'title' => 'required|max:100',
               // Checking for uniqueness of фдшфы, excluding this category by identifier:
               // 1.categories - database table where uniqueness is checked
-              // 2.alias - the name of the column, the uniqueness of the value of which is checked
+              // 2.slug - the name of the column, the uniqueness of the value of which is checked
               // 3.value by which the entry of the database table is excluded from the check
               // 4.field by which the entry of the database table is excluded from the check
               // The following SQL query to the database will be used for verification
-              // SELECT COUNT(*) FROM `categories` WHERE `alias` = '...' AND `id` <> 17
-             'alias' => 'required|max:100|unique:categories,alias,'.$id.',id|alpha_dash',
+              // SELECT COUNT(*) FROM `categories` WHERE `slug` = '...' AND `id` <> 17
+             'slug' => 'required|max:100|unique:categories,slug,'.$id.',id|alpha_dash',
          ]);
          // verification passed, updating the category
          $category->update($request->all());

@@ -11,8 +11,8 @@
     <div class="col">
         <div class="form-group">
             <label style="margin-bottom: 10px;">Slug</label>
-            <input type="text" class="form-control" name="alias" 
-                required maxlength="100" value="{{ old('alias') ?? $category->alias ?? '' }}">
+            <input type="text" class="form-control" name="slug" 
+                required maxlength="100" value="{{ old('slug') ?? $category->slug ?? '' }}">
         </div>
     </div>
 

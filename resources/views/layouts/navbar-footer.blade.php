@@ -44,7 +44,7 @@
                         <div class="categ">
                           <h5 style="font-weight: bold;" class="category-title">{{$child->title}}</h5>
                           @foreach ($child->children as $child2)
-                            <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('showCategory', $child2->alias)}}">{{$child2->title}}</a>
+                            <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('showCategory', $child2->slug)}}">{{$child2->title}}</a>
                           @endforeach  
                         </div>
                       @endforeach
@@ -69,7 +69,7 @@
       <div class="profile">
         @admin
           <div class="admin-panel">
-            <a href="{{route('admin.admin-orders')}}">Admin Panel</a>
+            <a href="{{route('admin.product.index')}}">Admin Panel</a>
           </div>
         @endadmin
           <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="{{route('cart')}}">

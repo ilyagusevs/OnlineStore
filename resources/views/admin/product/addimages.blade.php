@@ -13,7 +13,7 @@
     @csrf
         <div class="col-md-6">
             <p><strong>Title:</strong> {{ $productData['title'] }}</p>
-            <p><strong>Slug:</strong> {{ $productData['alias'] }}</p>
+            <p><strong>Slug:</strong> {{ $productData['slug'] }}</p>
             <div class="form-group">
                 <div class="field_wrapper">
                     <div>
@@ -30,7 +30,7 @@
             <thead>
                 <tr>
                     <th width ="5%">ID</th>
-                    <th width ="80%">Image</th>
+                    <th width ="50%">Image</th>
                     <th>Delete Image?</th>
                 </tr>
             </thead>

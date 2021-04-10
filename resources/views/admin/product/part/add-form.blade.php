@@ -10,8 +10,8 @@
     <div class="col">
         <label style="margin-bottom: 10px;">Slug</label>
         <div class="form-group">
-            <input type="text" class="form-control" name="alias"
-                required maxlength="100" value="{{ old('alias') ?? $product->alias ?? '' }}">
+            <input type="text" class="form-control" name="slug"
+                required maxlength="100" value="{{ old('slug') ?? $product->slug ?? '' }}">
         </div>
     </div>
     <div class="col">
@@ -71,6 +71,25 @@
     <textarea class="form-control" name="description"
               rows="4">{{ old('description') ?? $product->description ?? '' }}</textarea>
 </div>
+
+<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$productData['id']) }}" enctype="multipart/form-data">
+    @csrf
+        <div class="col-md-6">
+            <p><strong>Title:</strong> {{ $productData['title'] }}</p>
+            <p><strong>Slug:</strong> {{ $productData['slug'] }}</p>
+        </div>
+        <input type="hidden" name="product_id" value="{{$productData['id']}}">
+        <div class="field_wrapper">
+            <div>
+                <input id="size" name="size[]" type="text" name="size[]" value="" placeholder="Size"/>
+                <input id="slug" name="slug[]" type="text" name="slug[]" value="" placeholder="Slug"/>
+                <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
+            </div>
+        </div>
+        <button style="margin-top: 20px; margin-bottom: 30px;" type="submit" class="btn btn-success">
+            Add Size(s)
+        </button>
+</form>
 
 <div style="margin-top: 20px;" class="form-group">
     <button type="submit" class="btn btn-primary">Save product</button>

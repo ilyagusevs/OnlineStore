@@ -44,8 +44,8 @@
                 </form>
             <div class="row mb-4">
                 <div class="col-md-5 col-lg-3 col-xl-3">
-                    <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['alias'], $product->alias])}}" >
-                        <img class="img-fluid w-100" src="/css/productImages/{{$image}}" alt="{{$product->alias}}">
+                    <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['slug'], $product->slug])}}" >
+                        <img class="img-fluid w-100" src="/css/productImages/{{$image}}" alt="{{$product->slug}}">
                     </a>
                 </div>
                 <div class="col-md-7 col-lg-9 col-xl-9">
@@ -60,7 +60,7 @@
                             @else
                                 <p style="font-weight: bold;">&euro; {{ number_format($productOldPrice, 2, '.', '') }}</p>
                             @endif
-                            <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['alias'], $product->alias])}}" >
+                            <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['slug'], $product->slug])}}" >
                                 <p class="mb-3 text-muted">{{ $product->brand->title }} {{$product->title}}</p>
                             </a>
                             <form action="{{ route('cart-minus', ['id' => $product->id]) }}" method="post" class="d-inline">

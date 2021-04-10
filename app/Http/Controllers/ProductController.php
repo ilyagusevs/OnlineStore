@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function showProduct($categ, $alias){
-        $item = Product::where('alias',$alias)->first();
+    public function showProduct($categ, $slug){
+        $item = Product::where('slug',$slug)->first();
 
         return view('product',[
             'item' => $item
@@ -23,9 +23,9 @@ class ProductController extends Controller
         }
 
 
-    public function showCategory(Request $request, $categ_alias)
+    public function showCategory(Request $request, $categ_slug)
     {    
-        $categ = Category::where('alias',$categ_alias)->first();
+        $categ = Category::where('slug',$categ_slug)->first();
         $paginate = 4;        
         $products = Product::where('category_id',$categ->id)->paginate($paginate);
         

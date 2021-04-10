@@ -10,8 +10,8 @@
     <div class="col">
         <label style="margin-bottom: 10px;">Slug</label>
         <div class="form-group">
-            <input type="text" class="form-control" name="alias"
-                required maxlength="100" value="{{ old('alias') ?? $product->alias ?? '' }}">
+            <input type="text" class="form-control" name="slug"
+                required maxlength="100" value="{{ old('slug') ?? $product->slug ?? '' }}">
         </div>
     </div>
     <div class="col">
