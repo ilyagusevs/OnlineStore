@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function showProduct($categ, $slug){
-        $item = Product::where('slug',$slug)->first();
+        $product = Product::where('slug',$slug)->first();
 
         return view('product',[
-            'item' => $item
+            'product' => $product
         ]);
     }
 

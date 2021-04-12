@@ -9,11 +9,11 @@
 
 <h1 style="margin-top: 30px; margin-bottom: 20px;">Product Images</h1>
 
-<form name="addImageForm" id="addImageForm" method="post" action="{{ url('admin/add-images/'.$productData['id']) }}" enctype="multipart/form-data">
+<form name="addImageForm" id="addImageForm" method="post" action="{{ url('admin/add-images/'.$product['id']) }}" enctype="multipart/form-data">
     @csrf
         <div class="col-md-6">
-            <p><strong>Title:</strong> {{ $productData['title'] }}</p>
-            <p><strong>Slug:</strong> {{ $productData['slug'] }}</p>
+            <p><strong>Title:</strong> {{ $product['title'] }}</p>
+            <p><strong>Slug:</strong> {{ $product['slug'] }}</p>
             <div class="form-group">
                 <div class="field_wrapper">
                     <div>
@@ -35,10 +35,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($productData['images'] as $image)
+                @foreach($product['images'] as $image)
                     <tr>
                         <td>{{$image['id']}}</td>
-                        <td> <img style="width: 150px;" src="/css/productImages/{{$image['img']}}" alt="{{$productData['title']}}"></td>
+                        <td> <img style="width: 150px;" src="/css/productImages/{{$image['img']}}" alt="{{$product['title']}}"></td>
                         <form name="DeleteImageForm" id="DeleteImageForm" method="get" action="{{ url('admin/delete-image/'.$image['id']) }}" onsubmit="return confirm('Delete this image?')" enctype="multipart/form-data">
                             <td>
                                 <button  type="submit"class="m-0 p-0 border-0 bg-transparent">

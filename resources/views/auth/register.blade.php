@@ -33,9 +33,6 @@
                 <input style="margin-top: 10px;" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 <button style="margin-bottom: 10px;" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">JOIN</button>
             </form><!-- /form -->
-            <a style="display: flex; justify-content: center; font-size: 14px;"  href="#" class="forgot-password">
-                FORGOT THE PASSWORD?
-            </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
 </body>

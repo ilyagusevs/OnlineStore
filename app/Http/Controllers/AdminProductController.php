@@ -122,7 +122,7 @@ class AdminProductController extends Controller
 
     public function addImages(Request $request, $id) {
 
-        $productData = Product::with('images')->select('id', 'title', 'slug')->find($id);
+        $product = Product::with('images')->select('id', 'title', 'slug')->find($id);
 
 
         if($request->isMethod('post')){
@@ -131,7 +131,7 @@ class AdminProductController extends Controller
                 foreach($images as $key => $img) {
                     $productImage = new ProductImage;
                     $image_tmp = Image::make($img);
-                    $slug = $productData->slug;
+                    $slug = $product->slug;
                     $extension = $img->getClientOriginalExtension();
                     $imageName = $slug.rand(1,5).".".$extension;
 
@@ -146,7 +146,7 @@ class AdminProductController extends Controller
             }
         }
 
-        return view('admin.product.addimages', compact('productData'));
+        return view('admin.product.addimages', compact('product'));
     }
 
     public function deleteImage($id) {
@@ -181,8 +181,8 @@ class AdminProductController extends Controller
           return redirect()->back()->with('success', 'Size(s) successfully added!');
         }
 
-        $productData = Product::find($id);
-        return view('admin.product.addsizes', compact('productData'));
+        $product = Product::find($id);
+        return view('admin.product.addsizes', compact('product'));
     }
 
     public function editSizes(Request $request, $id) {

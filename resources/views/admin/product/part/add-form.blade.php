@@ -72,13 +72,13 @@
               rows="4">{{ old('description') ?? $product->description ?? '' }}</textarea>
 </div>
 
-<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$productData['id']) }}" enctype="multipart/form-data">
+<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$product['id']) }}" enctype="multipart/form-data">
     @csrf
         <div class="col-md-6">
-            <p><strong>Title:</strong> {{ $productData['title'] }}</p>
-            <p><strong>Slug:</strong> {{ $productData['slug'] }}</p>
+            <p><strong>Title:</strong> {{ $product['title'] }}</p>
+            <p><strong>Slug:</strong> {{ $product['slug'] }}</p>
         </div>
-        <input type="hidden" name="product_id" value="{{$productData['id']}}">
+        <input type="hidden" name="product_id" value="{{$product['id']}}">
         <div class="field_wrapper">
             <div>
                 <input id="size" name="size[]" type="text" name="size[]" value="" placeholder="Size"/>

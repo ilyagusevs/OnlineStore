@@ -14,13 +14,13 @@
 
 <h1 style="margin-top: 30px; margin-bottom: 20px;">Product sizes</h1>
 
-<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$productData['id']) }}" enctype="multipart/form-data">
+<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$product['id']) }}" enctype="multipart/form-data">
     @csrf
         <div class="col-md-6">
-            <p><strong>Title:</strong> {{ $productData['title'] }}</p>
-            <p><strong>Slug:</strong> {{ $productData['slug'] }}</p>
+            <p><strong>Title:</strong> {{ $product['title'] }}</p>
+            <p><strong>Slug:</strong> {{ $product['slug'] }}</p>
         </div>
-        <input type="hidden" name="product_id" value="{{$productData['id']}}">
+        <input type="hidden" name="product_id" value="{{$product['id']}}">
         <div class="field_wrapper">
             <div>
                 <input id="size" name="size[]" type="text" name="size[]" value="" placeholder="Size"/>
@@ -32,7 +32,7 @@
             Add Size(s)
         </button>
 </form>
-<form name="editSizeForm" id="EditForm" method="post" action="{{ url('admin/edit-sizes/'.$productData['id']) }}" enctype="multipart/form-data">
+<form name="editSizeForm" id="EditForm" method="post" action="{{ url('admin/edit-sizes/'.$product['id']) }}" enctype="multipart/form-data">
     <table class="table table-bordered table-stripped w-auto">
         <h3 style="margin-bottom: 20px;" class="card-title">Added product sizes</h3>
         <thead>
@@ -44,7 +44,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($productData['sizes'] as $size)
+            @foreach($product['sizes'] as $size)
                 @csrf
                 <input type="hidden" name="size_id[]" value="{{$size['id']}}">
                 <tr>
