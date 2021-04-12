@@ -14,6 +14,7 @@
     <table class="table table-bordered">
         <tr>
             <th>Product</th>
+            <th>Size</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Cost</th>
@@ -22,6 +23,7 @@
         @foreach($order->items as $item)
             <tr>
                 <td>{{ $item->title }}</td>
+                <td>{{ $item->size }}</td>
                 <td>&euro; {{ number_format($item->price, 2, '.', '') }}</td>
                 <td>{{ $item->quantity }}</td>
                 <td>&euro; {{ number_format($item->cost, 2, '.', '') }}</td>

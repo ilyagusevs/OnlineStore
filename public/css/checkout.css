@@ -134,14 +134,22 @@ img {
     font-size: 13px;
 }
 
-.qty {
+.qty{
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     margin-left: 5px;
     margin-top: 1px;
 }
 
-.product-qty {
+.size {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom: -5px;
+}
+
+.product-qty, .size-text {
     display: flex;
 }
 

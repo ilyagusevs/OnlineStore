@@ -110,7 +110,6 @@ span {
 
 .plus {
     font-size: 32px;
-  
 }
 
 input{
@@ -120,4 +119,14 @@ input{
     font-size: 26px;
     border:1px solid #ddd;
     border-radius:4px;
+}
+
+.size {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.select-size {
+    margin-bottom: 20px;
 }

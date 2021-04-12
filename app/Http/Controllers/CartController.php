@@ -30,7 +30,9 @@ class CartController extends Controller
     // Add product with ID  $id to cart
     public function cartAdd(Request $request, $id) {
         $quantity = $request->input('quantity') ?? 1;
-        $this->cart->increase($id, $quantity);
+        $size = $request->input('size');
+        $this->cart->increase($id, $size, $quantity);
+        //echo "<pre>"; print_r($size); die;
         // redirect back to the page where the "Add to cart" button was clicked
         return back();
     }
@@ -77,6 +79,7 @@ class CartController extends Controller
             $order->items()->create([
                 'product_id' => $product->id,
                 'title' => $product->title,
+                'size' => $product->pivot->size,
                 'price' => $product->new_price,
                 'quantity' => $product->pivot->quantity,
                 'cost' => $product->new_price * $product->pivot->quantity,

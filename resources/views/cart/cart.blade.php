@@ -63,6 +63,9 @@
                             <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['slug'], $product->slug])}}" >
                                 <p class="mb-3 text-muted">{{ $product->brand->title }} {{$product->title}}</p>
                             </a>
+                                
+                                <p class="mb-3 text-muted">Size: {{ $product->pivot->size }}</p>
+                           
                             <form action="{{ route('cart-minus', ['id' => $product->id]) }}" method="post" class="d-inline">
                                 @csrf
                                 <span>Qty:</span>
