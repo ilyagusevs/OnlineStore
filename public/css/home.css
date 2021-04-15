@@ -1,12 +1,11 @@
-.sale {
-    content: url("images/sales.png");
-    width: 100%;
-    height: 200px;
+.slider-1 img {
+  content: url("images/hh_slider_1.jpg");
+  margin-top: 50px;
 }
 
-.homeImage {
-    content: url("images/home.jpg");
-    margin-top: 40px;
+.slider-2 img {
+  content: url("images/hh_slider_2.jpg");
+  margin-top: 50px;
 }
 
 .brands {

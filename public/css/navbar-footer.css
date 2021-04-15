@@ -5,18 +5,17 @@
 }
 
 
-.searchbar{
+.searchbar {
     margin-bottom: auto;
     margin-top: auto;
     height: 40px;
     background-color: white;
     border-radius: 30px;
     padding: 7px;
-    border: 1px solid grey;
-    margin-left: 120px;
+    border: 1px solid grey; 
 }
 
-.search_input{
+.search_input {
     color: black;
     border: 0;
     outline: 0; 
@@ -26,13 +25,13 @@
     margin-top: -5px;
 }
 
-.search_input{
+.search_input {
     padding: 0 10px;
     width: 450px;
     font-family: 'Montserrat', sans-serif;
 }
 
-.search_icon{
+.search_icon {
     height: 30px;
     width: 30px;
     float: right;
@@ -40,6 +39,10 @@
     color:grey;
     text-decoration:none;
     padding: 4px;
+}
+
+.search_icon:hover{
+    text-decoration:none;
 }
 
 .profile {
@@ -98,6 +101,7 @@
 }
 
 footer {
+    margin-top: 80px;
     margin-top: auto;
 }
 
@@ -109,7 +113,7 @@ footer {
 }
 
 @media all and (min-width: 992px) {
-	.navbar{ padding-top: 0; padding-bottom: 0; }
+	.navbar{ padding-top: 0; padding-bottom: 0;}
 	.navbar .has-megamenu{position:static!important;}
 	.navbar .megamenu{left:0; right:0; width:100%; padding:35px;  }
 	.navbar .nav-link{ padding-top:1rem; padding-bottom:1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; }
@@ -132,7 +136,21 @@ footer {
     color: black;
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
+    text-decoration: none;
 }
+
+.register:hover{
+    text-decoration: none;
+}
+
+.signout:hover{
+    text-decoration: none;
+}
+
+.login:hover{
+    text-decoration: none;
+}
+
 
 .cart-count {
     font-family: 'Montserrat', sans-serif;
@@ -152,6 +170,9 @@ footer {
     color: black;
 }
 
+.admin-panel a:hover{
+    text-decoration: none;
+}
 
 
 
