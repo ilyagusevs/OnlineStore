@@ -31,7 +31,8 @@ class CartController extends Controller
     public function cartAdd(Request $request, $id) {
         $quantity = $request->input('quantity') ?? 1;
         $size = $request->input('size');
-        $this->cart->increase($id, $size, $quantity);
+        $user_id = $request->input('user_id');
+        $this->cart->increase($id, $size, $user_id, $quantity);
         //echo "<pre>"; print_r($size); die;
         // redirect back to the page where the "Add to cart" button was clicked
         return back();

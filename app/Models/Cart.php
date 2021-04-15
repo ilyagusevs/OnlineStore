@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Cookie;
 class Cart extends Model
 {
     public function products() {
-        return $this->belongsToMany(Product::class)->withPivot('quantity', 'size');
+        return $this->belongsToMany(Product::class)->withPivot('quantity', 'size', 'user_id');
     }
 
     // Increases the number of items $id in the cart by $count
-    public function increase($id, $size = "", $count = 1) {
-        $this->change($id, $size, $count);
+    public function increase($id, $user_id = "", $size = "", $count = 1) {
+        $this->change($id, $size, $user_id, $count);
     }
 
     // Decreases the number of items $id in the cart by the amount of $count
-    public function decrease($id, $size = "", $count = 1) {
-        $this->change($id, $size, -1 * $count);
+    public function decrease($id, $user_id = "", $size = "", $count = 1) {
+        $this->change($id, $size, $user_id, -1 * $count);
     }
 
     // Changes the quantity of the item $id in the cart by $count
     // If the item is not yet in the cart, it adds this item; 
     // $count can be either positive or negative
-    private function change($id, $size, $count = 0) {
+    private function change($id, $user_id, $size, $count = 0) {
         if ($count == 0) {
             return;
         }
@@ -42,7 +42,7 @@ class Cart extends Model
                 $pivotRow->delete();
             }
         } elseif ($count > 0) { // otherwise - add this product
-            $this->products()->attach($id, ['quantity' => $count, 'size' => $size]);
+            $this->products()->attach($id, ['quantity' => $count, 'size' => $size, 'user_id' => $user_id]);
         }
         // update the `updated_at` field of the `carts` table
         $this->touch();
@@ -88,5 +88,7 @@ class Cart extends Model
         }
         return $amount;
     }
+
+   
 
 }
