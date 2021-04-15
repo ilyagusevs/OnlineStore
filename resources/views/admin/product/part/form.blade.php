@@ -72,24 +72,6 @@
               rows="4">{{ old('description') ?? $product->description ?? '' }}</textarea>
 </div>
 
-<form name="addSizeForm" id="addSizeForm" method="post" action="{{ url('admin/add-sizes/'.$product['id']) }}" enctype="multipart/form-data">
-    @csrf
-        <div class="col-md-6">
-            <p><strong>Title:</strong> {{ $product['title'] }}</p>
-            <p><strong>Slug:</strong> {{ $product['slug'] }}</p>
-        </div>
-        <input type="hidden" name="product_id" value="{{$product['id']}}">
-        <div class="field_wrapper">
-            <div>
-                <input id="size" name="size[]" type="text" name="size[]" value="" placeholder="Size"/>
-                <input id="slug" name="slug[]" type="text" name="slug[]" value="" placeholder="Slug"/>
-                <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
-            </div>
-        </div>
-        <button style="margin-top: 20px; margin-bottom: 30px;" type="submit" class="btn btn-success">
-            Add Size(s)
-        </button>
-</form>
 
 <div style="margin-top: 20px;" class="form-group">
     <button type="submit" class="btn btn-primary">Save product</button>

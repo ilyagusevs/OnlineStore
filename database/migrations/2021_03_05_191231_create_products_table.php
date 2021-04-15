@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->string('brand');
             $table->float('old_price');
 	        $table->float('new_price');
-            $table->boolean('in_stock');
             $table->text('description');
             $table->string('alias');
             $table->bigInteger('category_id')->unsigned();

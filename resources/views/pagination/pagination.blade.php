@@ -3,17 +3,17 @@
 </head>
 
 <div class="product_pagination">
-    <ul>
+    <ul class="pagination">
         @foreach ($elements as $element)
             @if (is_string($element))
-                <li class="disabled">{{ $element }}</li>
+                <li class="page-item disabled">{{ $element }}</li>
             @endif
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="active">{{ $page }}</li>
+                        <li class="page-item active"><a class="page-link">{{ $page }}</a></li>
                     @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif

@@ -77,9 +77,15 @@
                             <form action="{{ route('cart-plus', ['id' => $product->id]) }}"
                                 method="post" class="d-inline">
                                 @csrf
-                                <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                    <i class="fas fa-plus-square"></i>
-                                </button>
+                                    @if($product->pivot->stock == 0)
+                                        <button type="submit" class="m-0 p-0 border-0 bg-transparent">
+                                            <i class="fas fa-plus-square"></i>
+                                        </button>
+                                    @else
+                                        <button type="submit" class="m-0 p-0 border-0 bg-transparent">
+                                            <i class="fas fa-plus-square"></i>
+                                        </button>
+                                    @endif
                             </form>
                         </div>
                         </div>

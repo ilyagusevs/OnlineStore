@@ -12,9 +12,18 @@ class ProductController extends Controller
     public function showProduct($categ, $slug){
         $product = Product::where('slug',$slug)->first();
 
+        $other_products = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->limit(4)->get();
+
         return view('product',[
-            'product' => $product
+            'product' => $product,
+            'other_products' => $other_products,
         ]);
+    }
+
+    public function products($id) {
+        $products = Product::where('category_id', $id);
+
+        return view('product', compact('products'));
     }
 
         public function brand($title) {
@@ -23,10 +32,11 @@ class ProductController extends Controller
         }
 
 
+
     public function showCategory(Request $request, $categ_slug)
     {    
         $categ = Category::where('slug',$categ_slug)->first();
-        $paginate = 4;        
+        $paginate = 6;        
         $products = Product::where('category_id',$categ->id)->paginate($paginate);
         
 

@@ -25,6 +25,7 @@
             <div>
                 <input id="size" name="size[]" type="text" name="size[]" value="" placeholder="Size"/>
                 <input id="slug" name="slug[]" type="text" name="slug[]" value="" placeholder="Slug"/>
+                <input id="stock" name="stock[]" type="number" min="0" name="stock[]" value="" oninput="validity.valid||(value='');" placeholder="Stock"/>
                 <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
             </div>
         </div>
@@ -40,6 +41,7 @@
                 <th>ID</th>
                 <th>Size</th>
                 <th>Slug</th>
+                <th>Stock</th>
                 <th>Delete size?</th>
             </tr>
         </thead>
@@ -56,6 +58,9 @@
                         <input type="text" name="slug[]" value="{{$size['slug']}}" requared="">
                     </td>
                     <td>
+                        <input type="number" name="stock[]" min="0" value="{{$size['stock']}}" oninput="validity.valid||(value='');" requared="">
+                    </td>
+                    <td>
                         <form name="DeleteSizeForm" id="DeleteSizeForm" method="get" action="{{ url('admin/delete-sizes/'.$size['id']) }}" onsubmit="return confirm('Delete this size?')" enctype="multipart/form-data">
                             <button  type="submit"class="m-0 p-0 border-0 bg-transparent">
                                 <i class="far fa-trash-alt text-danger"></i>
@@ -70,5 +75,10 @@
         Edit size(s)
     </button>
 </form>
+    <a href="{{ url('admin/edit-sizes/'.$product['id']) }}">
+        <button style="margin-top: 10px;" type="submit" class="btn btn-primary">
+            Back to product
+        </button>
+    </a>
 @endsection
 

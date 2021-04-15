@@ -7,8 +7,6 @@
         <link rel="stylesheet" href="/css/categories.css">
     </head>   
 
-    <h1>{{$categ->title}}</h1>
-
     <div class="products">
         <div class="container">
                 <div class="row">

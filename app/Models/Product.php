@@ -14,7 +14,6 @@ class Product extends Model
         'title',
         'old_price',
         'new_price',
-        'in_stock',
         'description',
         'slug',
     ];
@@ -38,5 +37,4 @@ class Product extends Model
     public function sizes() {
         return $this->hasMany(Size::class);
     }
-
 }

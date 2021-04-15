@@ -20,7 +20,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(8);
+        $products = Product::paginate(10);
         return view('admin.product.index', compact('products'));
     }
 
@@ -46,18 +46,7 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:100',
-            'brand_id' => 'integer',
-            'old_price' => 'required|max:100',
-            'new_price' => 'required|max:100',
-            'in_stock' => '',
-            'description' => 'required|max:500',
-            'slug' => 'required|max:100|unique:products,slug|alpha_dash',
-            'category_id' => 'integer',
-        ]);
 
-        
         $product = Product::create($request->all());
         return redirect()
             ->route('admin.product.show', ['product' => $product->id])
@@ -142,7 +131,7 @@ class AdminProductController extends Controller
                     $productImage->save();
                 }
 
-                return redirect('admin/add-images/'.$id)->with('success', 'Image successfully added!');
+                return redirect('admin/product/'.$id)->with('success', 'Image(s) successfully added!');
             }
         }
 
@@ -175,10 +164,11 @@ class AdminProductController extends Controller
                     $attribute->product_id = $id;
                     $attribute->slug = $value;
                     $attribute->size = $data['size'][$key];
+                    $attribute->stock = $data['stock'][$key];
                     $attribute->save();                  
                 }
             }
-          return redirect()->back()->with('success', 'Size(s) successfully added!');
+          return redirect('admin/product/'.$id)->with('success', 'Size(s) successfully added!');
         }
 
         $product = Product::find($id);
@@ -188,13 +178,12 @@ class AdminProductController extends Controller
     public function editSizes(Request $request, $id) {
         if($request->isMethod('post')) {
             $data = $request->all();
-            //echo "<pre>"; print_r($data); die;
             foreach($data['size_id'] as $key => $siz) {
                 if(!empty($siz)) {
-                    Size::where(['id'=>$data['size_id'][$key]])->update(['size'=>$data['size'][$key], 'slug'=>$data['slug'][$key]]);
+                    Size::where(['id'=>$data['size_id'][$key]])->update(['size'=>$data['size'][$key], 'slug'=>$data['slug'][$key], 'stock'=>$data['stock'][$key]]);
                 }
             }
-            return redirect()->back()->with('success', 'Size(s) successfully updated!');
+            return redirect('admin/product/'.$id)->with('success', 'Size(s) successfully updated!');
         }       
     }
 

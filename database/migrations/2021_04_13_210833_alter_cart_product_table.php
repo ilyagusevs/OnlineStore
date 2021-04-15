@@ -14,7 +14,9 @@ class AlterCartProductTable extends Migration
     public function up()
     {
         Schema::table('cart_product', function (Blueprint $table) {
-            $table->string('size')->after('product_id');
+            $table->bigInteger('user_id')->unsigned()->nullable()->after('product_id');
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+
         });
     }
 

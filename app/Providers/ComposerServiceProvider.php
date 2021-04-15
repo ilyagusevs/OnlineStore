@@ -26,9 +26,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.navbar-footer', function($view) {
-            $view->with(['positions' => Cart::getCart()->products->count()]);
-        });
+        // View::composer('layouts.navbar-footer', function($view) {
+        //     $view->with(['positions' => Cart::getCart()->products->count()]);
+        // });
 
         View::composer('layouts.navbar-footer', function($view) {
             $view->with(['positions' => Cart::getCount()]);
@@ -37,7 +37,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('cart.checkout', function($view) {
             $view->with(['positions' => Cart::getCount()]);
         });
-
+    
        
     }
 }

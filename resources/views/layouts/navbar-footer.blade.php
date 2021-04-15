@@ -74,12 +74,7 @@
             <a href="{{route('admin.product.index')}}">Admin Panel</a>
           </div>
         @endadmin
-          <a style="margin-top: 25px; margin-right: 10px; display: flex;" class="fa fa-shopping-cart fa-lg" href="{{route('cart')}}">
-            <div class="cart-count"> 
-              @if ($positions) ({{ $positions }}) @endif
-            </div>
-          </a>
-        <ul class="navbar-nav">
+         <ul class="navbar-nav">
 		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
             <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>
               <ul class="dropdown-menu dropdown-menu-right">
@@ -95,6 +90,11 @@
               </ul>
 		      </li>
 	      </ul> 
+          <a style="margin-top: 22px; margin-right: -10px;" href="{{route('cart')}}">
+            <i class="fa fa-shopping-cart fa-lg"></i>
+          </a>
+          <span style="height: 20px; margin-top: 15px; margin-left: -20px;" class="badge rounded-pill  bg-danger">@if ($positions) {{ $positions }} @endif</span>
+       
       </div>
       </div>
     </nav>
