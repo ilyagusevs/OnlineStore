@@ -26,7 +26,7 @@
   <body>
     <div class="page">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <a style="font-size: 32px;" class="navbar-brand" href="/">JUST SPORT</a>
+      <a style="font-size: 32px;" class="navbar-brand" href="{{ route('welcome') }}">JUST SPORT</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,23 +34,22 @@
       <ul class="navbar-nav mr-auto">
           @foreach ($categories as $category)
         <li class="nav-item dropdown has-megamenu">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{$category->title}}
           </a>
             <div style="margin-top: -1px; width: 69%; margin-left: 300px; background-color: whitesmoke; margin-top: -6px;" class="dropdown-menu megamenu" role="menu">
               <div class="row">
                 <div class="col-md-3">
                   <div class="col-megamenu"> 
-                    @if ($category->children) 
                       @foreach ($category->children as $child)
                         <div class="categ">
                           <h5 style="font-weight: bold;" class="category-title">{{$child->title}}</h5>
                           @foreach ($child->children as $child2)
-                            <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('showCategory', $child2->slug)}}">{{$child2->title}}</a>
+                            <a style="margin:0;padding:0;"class="dropdown-item" href="{{route('show-category-product', $child2->slug)}}">{{$child2->title}}</a>
                           @endforeach  
                         </div>
                       @endforeach
-                    @endif
+                    
                   </div>  <!-- col-megamenu.// -->
                 </div><!-- end col-3 -->   
               </div><!-- end row --> 
@@ -77,7 +76,7 @@
          <ul class="navbar-nav">
 		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
             <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>
-              <ul class="dropdown-menu dropdown-menu-right">
+              <ul class="dropdown-menu dropdown-menu-right" >
                 @guest
                   <li class="auth"><a class="login" href="{{route('login')}}">Sign in </a><i>|</i><a class="register" href="{{route('register')}}">Join</a></li>
                 @endguest
@@ -89,12 +88,23 @@
                 <a class="dropdown-item" href="/"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
               </ul>
 		      </li>
-	      </ul> 
-          <a style="margin-top: 22px; margin-right: -10px;" href="{{route('cart')}}">
-            <i class="fa fa-shopping-cart fa-lg"></i>
-          </a>
-          <span style="height: 20px; margin-top: 15px; margin-left: -20px;" class="badge rounded-pill  bg-danger">@if ($positions) {{ $positions }} @endif</span>
-       
+	      </ul>
+          @auth 
+            <a style="margin-top: 22px; margin-right: -10px;" href="{{route('cart')}}">
+              <i class="fa fa-shopping-cart fa-lg"></i>
+            </a>
+          @endauth
+          @guest
+            <a style="margin-top: 22px; margin-right: -10px;" href="{{route('login')}}">
+              <i class="fa fa-shopping-cart fa-lg"></i>
+            </a>
+          @endguest
+          @auth
+            <span style="height: 20px; margin-top: 15px; margin-left: -20px;" class="badge rounded-pill  bg-danger">@if ($positions) {{ $positions }} @endif</span>
+          @endauth
+          @guest
+            <span></span>
+          @endguest
       </div>
       </div>
     </nav>

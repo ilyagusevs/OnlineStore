@@ -31,7 +31,7 @@ class Product extends Model
     }
     
     public function carts() {
-        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+        return $this->belongsTo(Cart::class)->withPivot('quantity');
     }
 
     public function sizes() {

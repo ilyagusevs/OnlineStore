@@ -111,6 +111,12 @@ h4 {
 	transition: .4s ease;
   }
 
+.product_image img:hover {
+	box-shadow: 0 10px 10px rgba(63, 78, 100, 0.15);
+	opacity: 0.91;
+}
+  
+
 .product_title {
 	margin-top: 5px;
 	font-family: 'Montserrat', sans-serif;

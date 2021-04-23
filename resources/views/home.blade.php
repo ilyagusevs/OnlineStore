@@ -19,12 +19,16 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="slider-1">
-                        <img class="d-block w-100" alt="First slide">
+                        <a href="{{url('category/women_hoodies/')}}">
+                            <img class="d-block w-100" alt="First slide">
+                        </a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slider-2">
+                    <a href="{{ url('/category/men_hoodies/')}}">
                         <img class="d-block w-100" alt="Second slide">
+                    </a>
                     </div>
                 </div>
             </div>
@@ -45,8 +49,5 @@
             </section>
         </div>
     </div>
-
-
-        
 
 @endsection

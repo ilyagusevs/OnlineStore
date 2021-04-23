@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Cookie;
+use Auth;
 
 class Cart extends Model
 {
@@ -42,7 +43,7 @@ class Cart extends Model
                 $pivotRow->delete();
             }
         } elseif ($count > 0) { // otherwise - add this product
-            $this->products()->attach($id, ['quantity' => $count, 'size' => $size, 'user_id' => $user_id]);
+            $this->products()->attach($id, ['quantity' => $count, 'size' => $size, 'user_id' => Auth::id()]);
         }
         // update the `updated_at` field of the `carts` table
         $this->touch();

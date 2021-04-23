@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="/css/categories.css">
+    <link rel="stylesheet" href="/css/products.css">
 </head> 
 
 @foreach($products as $product)  
@@ -13,7 +13,7 @@
     @endphp
     <div class="product">
         <div class="product_image">
-            <a href="{{route('showProduct',[$product->category['slug'], $product->id])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
+            <a href="{{route('show-product',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
             <div class="product_content">
                 <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
                 <div class="prices">

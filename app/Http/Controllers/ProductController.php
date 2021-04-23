@@ -14,10 +14,7 @@ class ProductController extends Controller
 
         $other_products = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->limit(4)->get();
 
-        return view('product',[
-            'product' => $product,
-            'other_products' => $other_products,
-        ]);
+        return view('product',compact('product', 'other_products'));
     }
 
     public function products($id) {
@@ -26,26 +23,27 @@ class ProductController extends Controller
         return view('product', compact('products'));
     }
 
-        public function brand($title) {
-            $brands = Brand::where('title', $title)->firstOrFail();
-            return view('categories', compact('brands'));
-        }
+    public function brand($title) {
+        $brands = Brand::where('title', $title)->firstOrFail();
+
+        return view('products', compact('brands'));
+    }
 
 
 
-    public function showCategory(Request $request, $categ_slug)
+    public function showCategoryProduct(Request $request, $categ)
     {    
-        $categ = Category::where('slug',$categ_slug)->first();
+        $categ_slug = Category::where('slug',$categ)->first();
         $paginate = 6;        
-        $products = Product::where('category_id',$categ->id)->paginate($paginate);
+        $products = Product::where('category_id',$categ_slug->id)->paginate($paginate);
         
 
         if(isset($request->orderBy)){
             if($request->orderBy == 'price-low-high'){
-                $products = Product::where('category_id',$categ->id)->orderBy('new_price')->paginate($paginate);
+                $products = Product::where('category_id',$categ_slug->id)->orderBy('new_price')->paginate($paginate);
             }
             if($request->orderBy == 'price-high-low'){
-                $products = Product::where('category_id',$categ->id)->orderBy('new_price','desc')->paginate($paginate);
+                $products = Product::where('category_id',$categ_slug->id)->orderBy('new_price','desc')->paginate($paginate);
             }
 
         }
@@ -56,10 +54,9 @@ class ProductController extends Controller
             ])->render();
         }
 
-        return view('categories',[
-            'categ' => $categ,
-            'products' => $products,
-        ]);
+        return view('products', compact('categ_slug', 'products'));
     }
+
+    
 
 }

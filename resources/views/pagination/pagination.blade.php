@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/pagination.css">
 </head>
 
 <div class="product_pagination">

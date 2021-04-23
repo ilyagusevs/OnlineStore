@@ -183,7 +183,7 @@ class AdminProductController extends Controller
                     Size::where(['id'=>$data['size_id'][$key]])->update(['size'=>$data['size'][$key], 'slug'=>$data['slug'][$key], 'stock'=>$data['stock'][$key]]);
                 }
             }
-            return redirect('admin/product/'.$id)->with('success', 'Size(s) successfully updated!');
+            return redirect()->back()->with('success', 'Size(s) successfully updated!');
         }       
     }
 

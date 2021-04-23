@@ -6,6 +6,7 @@
     <script src="/js/product.js"></script>
 @endsection
 
+
 @section('content')
     <head>
         <link rel="stylesheet" href="/css/product.css">
@@ -46,7 +47,6 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="quantity" value="1">
-                        <input type="hidden" name="cart_id" value="427">
                             <div class="details_content">
                                 <div class="details_name" data-id="{{$product->id}}"><h2>{{ $product->brand->title }} {{$product['title']}}</h2></div>
                                 <div class="price">
@@ -69,11 +69,11 @@
 
                                     <select class="selectpicker" name="size" product-id="{{ $product->id }}" oninvalid="this.setCustomValidity('Please select a size')" required>
                                     <option value="" disabled selected>Select size</option>
-                                        @foreach($product['sizes'] as $size)
-                                            @if($size['stock'] == 0)
-                                                <option value="{{$size['size']}}" disabled>{{ $size['size'] }}</option>
+                                        @foreach($product->sizes as $size)
+                                            @if($size->stock == 0)
+                                                <option value="{{$size->size}}" disabled>{{ $size['size'] }}</option>
                                             @else
-                                                <option value="{{$size['size']}}">{{ $size['size'] }}</option>
+                                                <option value="{{$size->size}}">{{ $size->size }}</option>
                                             @endif
                                         @endforeach    
                                     </select>
@@ -82,7 +82,14 @@
                                 <div class="details_text">
                                     <p>{{$product->description}}</p>
                                 </div>
-                                <button style="margin-top: 20px;" type="submit" class="btn btn-success">Add to cart</button>
+                                @guest
+                                    <div class="text-center">
+                                        <a href="{{ route('login') }}" style="margin-top: 20px;" class="btn btn-success" type="submit">Add to cart</a>
+                                    </div>
+                                @endguest
+                                @auth
+                                    <button style="margin-top: 20px;" type="submit" class="btn btn-success">Add to cart</button>
+                                @endauth    
                                 <div class="text-center">
                                     <p style="margin-top: 20px;"><i style="margin-right: 5px;" class="fas fa-truck"></i><strong>Free delivery</strong> on orders over &euro; 30</p>
                                 </div>  
@@ -109,7 +116,7 @@
                             @endphp
                            <div class="product">
                                 <div class="product_image">
-                                    <a href="{{route('showProduct',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
+                                    <a href="{{route('show-product',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
                                         <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
                                             <div class="prices">

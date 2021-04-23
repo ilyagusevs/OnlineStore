@@ -1,10 +1,10 @@
 @extends('layouts.navbar-footer')
 
-@section('title', $categ->title)
+@section('title', $categ_slug->title)
 
 @section('content')
     <head>
-        <link rel="stylesheet" href="/css/categories.css">
+        <link rel="stylesheet" href="/css/products.css">
     </head>   
 
     <div class="products">
@@ -47,7 +47,7 @@
                             @endphp
                            <div class="product">
                                 <div class="product_image">
-                                    <a href="{{route('showProduct',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
+                                    <a href="{{route('show-product',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
                                         <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
                                             <div class="prices">
@@ -64,7 +64,7 @@
                         @endforeach                      
                     </div>
                 </div>
-                {{$products->appends(request()->query())->links('pagination.pagination')}}
+                {{ $products->links('pagination.pagination') }}
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
                 let orderBy = $(this).data('order')
                 $('.sorting_text').text($(this).find('span').text())
                 $.ajax({
-                    url: "{{route('showCategory',$categ->slug)}}",
+                    url: "{{route('show-category-product',$categ_slug->slug)}}",
                     type: "GET",
                     data: {
                         orderBy: orderBy,

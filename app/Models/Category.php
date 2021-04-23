@@ -19,16 +19,12 @@ class Category extends Model
     }
 
     public function parent() {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return self::where('parent_id', null)->get();
     }
 
     public function children() {
         return $this->hasMany(Category::class, 'parent_id');
     }
-
-    public static function roots() {
-        return self::where('parent_id', 0)->with('children')->get();
-    }
-
+    
 
 }

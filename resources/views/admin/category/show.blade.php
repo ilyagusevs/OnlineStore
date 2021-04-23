@@ -11,11 +11,6 @@
  	        {{Session::get('success')}}
         </div>
     @endif
-    @if(Session::has('success'))
-        <div style="margin-top: 20px;" class="alert alert-success" role="alert">
- 	        {{Session::get('success')}}
-        </div>
-    @endif
 <h1 style="margin-top: 30px; margin-bottom: 30px;">Category view</h1>
     <div class="row">
         <div class="col-md-6">
@@ -62,8 +57,13 @@
           action="{{ route('admin.category.destroy', ['category' => $category->id]) }}">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">
+        <button type="submit" class="btn btn-danger" >
             Remove category
         </button>
     </form>
+    <a href="{{url('admin/category')}}">
+        <button class="btn btn-primary">
+            Back to categories
+        </button>
+    </a>
 @endsection

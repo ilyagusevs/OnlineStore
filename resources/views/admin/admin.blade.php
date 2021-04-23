@@ -39,7 +39,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container">
-  <a class="navbar-brand" href="{{route('home')}}">JUST SPORT</a>
+  <a class="navbar-brand" href="{{route('welcome')}}">JUST SPORT</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -55,10 +55,10 @@
         <a class="nav-link" href="{{route('admin.category.index')}}">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.admin-orders')}}">Orders</a>
+        <a class="nav-link" href="{{route('admin.order.index')}}">Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Users</a>
+        <a class="nav-link" href="{{route('admin.user.index')}}">Users</a>
       </li>
     </ul>
   </div>

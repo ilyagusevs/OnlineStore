@@ -7,8 +7,7 @@
         </div>
     @endif
 
-<h1 style="margin-top: 30px; margin-bottom: 20px;">Product Images</h1>
-
+<h1 style="margin-top: 30px; margin-bottom: 10px;">Product Images</h1>
 <form name="addImageForm" id="addImageForm" method="post" action="{{ url('admin/add-images/'.$product['id']) }}" enctype="multipart/form-data">
     @csrf
         <div class="col-md-6">
@@ -22,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <button style="margin-top: 20px; margin-bottom: 30px;" type="submit" class="btn btn-success">
+        <button style="margin-top: 20px; margin-bottom: 10px;" type="submit" class="btn btn-success">
             Add Image(s)
         </button>
 </form>
@@ -48,6 +47,11 @@
                         </form>
                     </tr>
                 @endforeach
+                <a href="{{ url('admin/product/'.$product['id']) }}">
+                    <button style="margin-bottom: 20px; display:" type="submit" class="btn btn-primary">
+                        Back to product
+                    </button>
+                </a>
             </tbody>
         </table>
 @endsection

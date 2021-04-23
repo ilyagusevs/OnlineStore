@@ -44,7 +44,7 @@
                 </form>
             <div class="row mb-4">
                 <div class="col-md-5 col-lg-3 col-xl-3">
-                    <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['slug'], $product->slug])}}" >
+                    <a style="text-decoration:none;" href="{{route('show-product',[$product->category['slug'], $product->slug])}}" >
                         <img class="img-fluid w-100" src="/css/productImages/{{$image}}" alt="{{$product->slug}}">
                     </a>
                 </div>
@@ -60,12 +60,10 @@
                             @else
                                 <p style="font-weight: bold;">&euro; {{ number_format($productOldPrice, 2, '.', '') }}</p>
                             @endif
-                            <a style="text-decoration:none;" href="{{route('showProduct',[$product->category['slug'], $product->slug])}}" >
+                            <a style="text-decoration:none;" href="{{route('show-product',[$product->category['slug'], $product->slug])}}" >
                                 <p class="mb-3 text-muted">{{ $product->brand->title }} {{$product->title}}</p>
                             </a>
-                                
-                                <p class="mb-3 text-muted">Size: {{ $product->pivot->size }}</p>
-                           
+                            <p class="mb-3 text-muted">Size: {{ $product->pivot->size }}</p>
                             <form action="{{ route('cart-minus', ['id' => $product->id]) }}" method="post" class="d-inline">
                                 @csrf
                                 <span>Qty:</span>
@@ -77,15 +75,9 @@
                             <form action="{{ route('cart-plus', ['id' => $product->id]) }}"
                                 method="post" class="d-inline">
                                 @csrf
-                                    @if($product->pivot->stock == 0)
-                                        <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                            <i class="fas fa-plus-square"></i>
-                                        </button>
-                                    @else
-                                        <button type="submit" class="m-0 p-0 border-0 bg-transparent">
-                                            <i class="fas fa-plus-square"></i>
-                                        </button>
-                                    @endif
+                                <button type="submit" class="m-0 p-0 border-0 bg-transparent">
+                                    <i class="fas fa-plus-square"></i>
+                                </button>
                             </form>
                         </div>
                         </div>
@@ -124,16 +116,9 @@
                     </li>
                 </ul>
                 <hr class="my-4">
-                @auth
-                    <div class="text-center">
-                        <a href="{{ route('cart-checkout') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
-                    </div>
-                @endauth
-                @guest
-                    <div class="text-center">
-                        <a href="{{ route('login') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
-                    </div>
-                @endguest
+                <div class="text-center">
+                    <a href="{{ route('cart-checkout') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
+                </div>
                 <div class="text-center">
                     <p style="margin-top: 20px;"><strong>Free delivery</strong> on orders over &euro; 30</p>
                 </div>

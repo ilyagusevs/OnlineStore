@@ -114,7 +114,7 @@ footer {
 
 @media all and (min-width: 992px) {
 	.navbar{ padding-top: 0; padding-bottom: 0;}
-	.navbar .has-megamenu{position:static!important;}
+	.navbar .has-megamenu{ position:static!important;}
 	.navbar .megamenu{left:0; right:0; width:100%; padding:35px;  }
 	.navbar .nav-link{ padding-top:1rem; padding-bottom:1rem; font-family: 'Montserrat', sans-serif; font-weight: bold; }
     .navbar .nav-item .dropdown-menu{  display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0; }
@@ -122,12 +122,16 @@ footer {
     .navbar .nav-item:hover .nav-link:hover {color:cornflowerblue; }
     .navbar .nav-item .nav-link {text-align: center;}
 	.navbar .nav-item:hover .dropdown-menu{ transition: .3s; opacity:1; visibility:visible; top:100%; transform: rotateX(0deg); } 
-    .navbar .categ {display: table-cell; padding-right: 300px; font-family: 'Montserrat', sans-serif;  }
+    .navbar .categ {display: table-cell; padding-right: 270px; font-family: 'Montserrat', sans-serif;  }
     .navbar .col-megamenu {display: table; border-spacing: 10px; }
     .navbar .nav-item {width: 100px; height: 50px;}
     .navbar .dropdown-menu .dropdown-item:hover{color: cornflowerblue; background-color: whitesmoke;} 
     .navbar .dropdown-menu-right{ width: 200px; height: 150px; background-color: whitesmoke; }
 
+}
+
+.dropdown-item {
+    font-family: 'Montserrat', sans-serif; 
 }
 
 .signout {

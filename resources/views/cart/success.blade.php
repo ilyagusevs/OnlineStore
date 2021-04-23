@@ -18,6 +18,7 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Cost</th>
+            
         </tr>
       
         @foreach($order->items as $item)
@@ -27,11 +28,13 @@
                 <td>&euro; {{ number_format($item->price, 2, '.', '') }}</td>
                 <td>{{ $item->quantity }}</td>
                 <td>&euro; {{ number_format($item->cost, 2, '.', '') }}</td>
+                
             </tr>
         @endforeach
         <tr>
             <th style="text-align: right;" colspan="3" class="text-right">Total</th>
             <th>&euro; {{ number_format($order->amount, 2, '.', '') }}</th>
+            <th></th>
         </tr>
     </table>
 

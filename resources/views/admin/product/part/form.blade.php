@@ -21,7 +21,7 @@
             @endphp
             <label style="margin-bottom: 10px;">Brand</label>
             <select name="brand_id" class="form-control">
-                <option value="0">Choose</option>
+                <option disabled selected>Choose brand</option>
                 @foreach($brands as $brand)
                     <option value="{{ $brand->id }}" @if ($brand->id == $brand_id) selected @endif>
                         {{ $brand->title }}
