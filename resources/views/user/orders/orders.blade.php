@@ -1,8 +1,9 @@
-@extends('layouts.navbar-footer', ['title' => 'Your orders'])
+@extends('layouts.navbar-footer')
+
+@section('title', 'JUST SPORT | MY ORDERS')
 
 @section('content')
 <div class="container">
-    <h1 style="margin-top: 20px; margin-bottom: 20px;">Your orders</h1>
     @if($orders->count())
         <table class="table table-bordered">
         <tr>
@@ -30,9 +31,17 @@
         </table>
         {{ $orders->links('pagination.pagination') }}
     @else
-        <p>No orders yet</p>
+    <div class="container-fluid mt-100">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="margin-top: 300px;" class="col-sm-12 empty-cart-cls text-center"><i class="fas fa-box fa-4x"></i>
+                    <br>
+                    <h3><strong><br>No orders yet!</strong></h3>
+                </div>
+            </div>
+        </div>
+        </div>
     @endif
-
 </div>
 @endsection
 

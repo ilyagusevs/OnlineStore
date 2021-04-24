@@ -1,4 +1,4 @@
-h1, strong {
+h1, h3, strong {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     
@@ -147,4 +147,5 @@ img {
 .my-4 {
     color: lightgray;
 }
+
 

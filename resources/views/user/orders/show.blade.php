@@ -1,4 +1,6 @@
-@extends('layouts.navbar-footer', ['title' => 'Просмотр заказа'])
+@extends('layouts.navbar-footer')
+
+@section('title', 'JUST SPORT | ORDER DETAILS')
 
 @section('content')
 <head>
