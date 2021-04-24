@@ -85,26 +85,16 @@
                 @endauth
                 <hr style="margin-top: -10px;">
                 <a class="dropdown-item" href="/account"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
-                <a class="dropdown-item" href="/"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
+                <a class="dropdown-item" href="{{route('user.my-orders')}}"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
               </ul>
 		      </li>
 	      </ul>
-          @auth 
             <a style="margin-top: 22px; margin-right: -10px;" href="{{route('cart')}}">
               <i class="fa fa-shopping-cart fa-lg"></i>
             </a>
-          @endauth
-          @guest
-            <a style="margin-top: 22px; margin-right: -10px;" href="{{route('login')}}">
-              <i class="fa fa-shopping-cart fa-lg"></i>
-            </a>
-          @endguest
-          @auth
+
             <span style="height: 20px; margin-top: 15px; margin-left: -20px;" class="badge rounded-pill  bg-danger">@if ($positions) {{ $positions }} @endif</span>
-          @endauth
-          @guest
-            <span></span>
-          @endguest
+
       </div>
       </div>
     </nav>

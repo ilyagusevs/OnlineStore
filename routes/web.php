@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminBrandController;
@@ -40,6 +41,15 @@ Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->where('
 Route::get('/cart/checkout', [CartController::class, 'cartCheckout'])->name('cart-checkout');
 Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart-saveorder');
 Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
+
+Route::group([
+    'as' => 'user.', // имя маршрута, например user.index
+    'prefix' => 'user', // префикс маршрута, например user/index
+    'middleware' => ['auth'] // один или несколько посредников
+], function () {
+    Route::get('orders', [OrderController::class, 'orders'])->name('my-orders');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('show-order');
+});
 
 Auth::routes([
     'reset' => false,

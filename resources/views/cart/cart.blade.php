@@ -117,8 +117,13 @@
                 </ul>
                 <hr class="my-4">
                 <div class="text-center">
+                @auth
                     <a href="{{ route('cart-checkout') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
+                @endauth
                 </div>
+                @guest
+                <a href="{{ route('login') }}" style="font-weight: bold;" class="btn btn-success" type="submit">CHECKOUT</a>
+                @endguest
                 <div class="text-center">
                     <p style="margin-top: 20px;"><strong>Free delivery</strong> on orders over &euro; 30</p>
                 </div>

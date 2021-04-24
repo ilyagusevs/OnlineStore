@@ -58,7 +58,6 @@
                     </div>
                     <hr class="my-4">                  
                     @foreach($products as $product)
-                    @if(auth()->user()->id == $product->pivot->user_id)
                         @php
                             $productPrice = $product->new_price;
                             $productQuantity =  $product->pivot->quantity;
@@ -84,7 +83,6 @@
                                     <div class="product-qty">Qty: <p class="qty">{{ $productQuantity }}</p></div>
                                 </div>                            
                             </div>
-                    @endif
                     @endforeach
                     <hr class="my-4">
                     <div class="total-price">

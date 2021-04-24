@@ -82,14 +82,7 @@
                                 <div class="details_text">
                                     <p>{{$product->description}}</p>
                                 </div>
-                                @guest
-                                    <div class="text-center">
-                                        <a href="{{ route('login') }}" style="margin-top: 20px;" class="btn btn-success" type="submit">Add to cart</a>
-                                    </div>
-                                @endguest
-                                @auth
-                                    <button style="margin-top: 20px;" type="submit" class="btn btn-success">Add to cart</button>
-                                @endauth    
+                                    <button style="margin-top: 20px;" type="submit" class="btn btn-success">Add to cart</button>    
                                 <div class="text-center">
                                     <p style="margin-top: 20px;"><i style="margin-right: 5px;" class="fas fa-truck"></i><strong>Free delivery</strong> on orders over &euro; 30</p>
                                 </div>  
