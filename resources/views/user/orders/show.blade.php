@@ -4,7 +4,7 @@
 
 @section('content')
 <head>
-    <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" href="/css/show-order.css">
 </head>
 <div class="container">
     @php
@@ -74,7 +74,7 @@
             <hr class="my-4"> 
             <p>{{ $order->user->firstname }} {{ $order->user->lastname }}</p>
             <p>{{ $order->address }}</p>
-            <p>{{ $order->coutry }}, {{ $order->city }}, {{ $order->zipcode }}</p>
+            <p>{{ $order->country }}, {{ $order->city }}, {{ $order->zipcode }}</p>
             <p>{{ $order->phone }}</p>
         </div>
     </div>

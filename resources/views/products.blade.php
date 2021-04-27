@@ -6,33 +6,79 @@
     <head>
         <link rel="stylesheet" href="/css/products.css">
     </head>   
-
     <div class="products">
         <div class="container">
                 <div class="row">
                     <div class="col">
                         <!-- Product Sorting -->
                         <div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
-                        <div class="results">Showing <span>{{$products->count()}}</span> results</div>
                             <div class="sorting_container ml-md-auto">
                                 <div class="sorting">
                                     <ul class="item_sorting">
                                         <li>
-                                            <span class="sorting_text">Sort by</span>
+                                            <span class="sorting_text">Sort</span>
                                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                             <ul>
-                                                <li class="product_sorting_btn" data-order="price-low-high"><span>Price: Low-High</span></li>
-                                                <li class="product_sorting_btn" data-order="price-high-low"><span>Price: High-Low</span></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?sort=new" }}"><span>What's new</span></a></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?sort=low-high" }}"><span>Low-High</span></a></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?sort=high-low"}}"><span>High-Low</span></a></li>
                                             </ul>
                                         </li>
+                                        <li>
+                                            <span class="filtering_text">Brand</span>
+                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                            <ul>
+                                                <li><a class="sort-font" href="{{ URL::current() }}"><span>All brands</span></a></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?filter=nike" }}"><span>Nike</span></a></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?filter=adidas" }}"><span>Adidas</span></a></li>
+                                                <li><a class="sort-font" href="{{ URL::current()."?filter=reebok"}}"><span>Reebok</span></a></li>
+                                            </ul>
+                                        </li>
+                                        @if($categ_slug->title == 'Trainers' or $categ_slug->title == 'Football' or $categ_slug->title == 'Basketball'
+                                        or $categ_slug->title == 'Fitness'or $categ_slug->title == 'Running')
+                                            <li>
+                                                <span class="filtering_text">Size</span>
+                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                <ul>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=38" }}"><span>38</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=39" }}"><span>39</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=40" }}"><span>40</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=41" }}"><span>41</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=42" }}"><span>42</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=43" }}"><span>43</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=44" }}"><span>44</span></a></li>
+                                                </ul>
+                                            </li>
+                                        @elseif($categ_slug->title == 'Hoodies' or $categ_slug->title == 'Shorts' or $categ_slug->title == 'Shirts')
+                                            <li>
+                                                <span class="filtering_text">Size</span>
+                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                <ul>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=xs" }}"><span>XS</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=s" }}"><span>S</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=m" }}"><span>M</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=l" }}"><span>L</span></a></li>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=xl" }}"><span>XL</span></a></li>
+                                                </ul>
+                                            </li>
+                                        @elseif($categ_slug->title == 'Sunglasses')
+                                            <li>
+                                                <span class="filtering_text">Size</span>
+                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                <ul>
+                                                    <li><a class="sort-font" href="{{ URL::current()."?filter-size=one-size" }}"><span>One size</span></a></li>
+                                                </ul>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
                     </div>
                 </div>
             </div>
         <div class="container">
+        <div style="margin-top: -30px; margin-bottom: 30px;"class="results">Showing <span>{{$products->count()}}</span> results</div>
             <div class="row">
                 <div class="col">
                     <div class="product_grid">
@@ -64,56 +110,8 @@
                         @endforeach                      
                     </div>
                 </div>
-                {{ $products->links('pagination.pagination') }}
+                {{ $products->appends(request()->query())->links('pagination.pagination') }}
             </div>
         </div>
     </div>
-    
-    
-
-@endsection
-
-@section('custom_js')
-    <script>
-       $(document).ready(function () {
-            $('.product_sorting_btn').click(function () {
-                let orderBy = $(this).data('order')
-                $('.sorting_text').text($(this).find('span').text())
-                $.ajax({
-                    url: "{{route('show-category-product',$categ_slug->slug)}}",
-                    type: "GET",
-                    data: {
-                        orderBy: orderBy,
-                        page: {{isset($_GET['page']) ? $_GET['page'] : 1}},
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: (data) => {
-                        let positionParameters = location.pathname.indexOf('?');
-                        let url = location.pathname.substring(positionParameters,location.pathname.length);
-                        let newURL = url + '?'; // http://127.0.0.1:8001/category/mens_clothing?
-                        newURL += 'orderBy=' + orderBy + "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"; // http://127.0.0.1:8001/category/mens_clothing?orderBy=price-low-high
-                        history.pushState({}, '', newURL);
-                        $('.product_pagination a').each(function(index, value){
-                            let link= $(this).attr('href')
-                            $(this).attr('href',link+'&orderBy='+orderBy)
-                        })
-                        $('.product_grid').html(data)
-                        $('.product_grid').isotope('destroy')
-                        $('.product_grid').imagesLoaded( function() {
-                            let grid = $('.product_grid').isotope({
-                                itemSelector: '.product',
-                                layoutMode: 'fitRows',
-                                fitRows:
-                                    {
-                                        gutter: 30
-                                    }
-                            });
-                        });
-                    }
-                });
-            })
-        })
-    </script>
 @endsection

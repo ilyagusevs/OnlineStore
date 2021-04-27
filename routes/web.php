@@ -42,10 +42,13 @@ Route::get('/cart/checkout', [CartController::class, 'cartCheckout'])->name('car
 Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart-saveorder');
 Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
 
+Route::get('search', [ProductController::class, 'search'])->name('search');
+Route::get('searching', [ProductController::class, 'searching'])->name('searching');
+
 Route::group([
-    'as' => 'user.', // имя маршрута, например user.index
-    'prefix' => 'user', // префикс маршрута, например user/index
-    'middleware' => ['auth'] // один или несколько посредников
+    'as' => 'user.', 
+    'prefix' => 'user', 
+    'middleware' => ['auth'] 
 ], function () {
     Route::get('orders', [OrderController::class, 'orders'])->name('my-orders');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('show-order');

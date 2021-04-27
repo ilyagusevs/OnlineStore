@@ -61,11 +61,14 @@
     <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
-          <input class="search_input" type="text" name="" placeholder="Search for items and brands">
-          <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+        <form id="search-from" action="{{ route('search') }}" method="get">
+          <input class="search_input" type="text" name="query" id="query" value="{{ request()->input('query') }}" placeholder="Search for items and brands">
+          <button style="width: 40px; margin-top: -7px;" class="btn"><i class="fa fa-search"></i></button>
+        </form> 
         </div>
       </div>
-    </div>            
+    </div>
+      
         
       <div class="profile">
         @admin
