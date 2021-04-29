@@ -87,7 +87,7 @@
                   <li class="auth" style="font-weight: bold; font-family: 'Montserrat', sans-serif; margin-left: 15px;" >Hi, {{ auth()->user()->firstname }}<a class="signout" href="{{route('get-logout')}}">Sign Out</a></li>
                 @endauth
                 <hr style="margin-top: -10px;">
-                <a class="dropdown-item" href="/account"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
+                <a class="dropdown-item" href="{{route('user.dashboard')}}"><i style="margin-right: 10px;" class="fas fa-user fa-lg"></i> My Account</a>
                 <a class="dropdown-item" href="{{route('user.my-orders')}}"><i style="margin-right: 10px;" class="fas fa-box fa-lg"></i> My Orders</a>
               </ul>
 		      </li>
