@@ -23,8 +23,8 @@
         </tr>
         @foreach ($brands as $brand)
         <tr>
-            <td>{{ $brand->title }}</td>
-            <td>{{ $brand->slug }}</td>
+            <td>{{ $brand->brand }}</td>
+            <td>{{ $brand->brand_slug }}</td>
             <td>
                 <a href="{{ route('admin.brand.edit', ['brand' => $brand->id]) }}">
                     <i class="far fa-edit"></i>

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
     protected $fillable = [
         'category_id',
         'brand_id',
@@ -27,7 +26,7 @@ class Product extends Model
     }
 
     public function brand() {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
     
     public function carts() {
@@ -37,4 +36,6 @@ class Product extends Model
     public function sizes() {
         return $this->hasMany(Size::class);
     }
+
+   
 }

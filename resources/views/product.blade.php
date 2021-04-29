@@ -48,7 +48,7 @@
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="quantity" value="1">
                             <div class="details_content">
-                                <div class="details_name" data-id="{{$product->id}}"><h2>{{ $product->brand->title }} {{$product['title']}}</h2></div>
+                                <div class="details_name" data-id="{{$product->id}}"><h2>{{ $product->brand->brand }} {{$product['title']}}</h2></div>
                                 <div class="price">
                                     @if($product->new_price != $product->old_price)
                                         <div class="oldprice">&euro; {{ number_format($product->old_price, 2, '.', '') }}</div>

@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <p><strong>Title:</strong> {{ $product->title }}</p>
             <p><strong>Slug:</strong> {{ $product->slug }}</p>
-            <p><strong>Brand:</strong> {{ $product->brand->title }}</p>
+            <p><strong>Brand:</strong> {{ $product->brand->brand }}</p>
             <p><strong>Price:</strong> &euro; {{ $product->new_price }}</p>
             <div class="sizes" style="display: flex;">
                 <strong class="size-title" style="margin-bottom: 15px;">Sizes: &nbsp;</strong>

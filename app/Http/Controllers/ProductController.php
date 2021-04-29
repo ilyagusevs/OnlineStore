@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Brand;
-
 use Request;
 
 
@@ -17,18 +15,6 @@ class ProductController extends Controller
         $other_products = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->limit(4)->get();
 
         return view('product',compact('product', 'other_products'));
-    }
-
-    public function products($id) {
-        $products = Product::where('category_id', $id);
-
-        return view('product', compact('products'));
-    }
-
-    public function brand($title) {
-        $brands = Brand::where('title', $title)->firstOrFail();
-
-        return view('products', compact('brands'));
     }
 
     public function showCategoryProduct(Request $request, $categ)
@@ -122,11 +108,23 @@ class ProductController extends Controller
 
         $query = $request::input('query');
 
-        $products = Product::where('title', 'like', "%$query%")->paginate(6);
+        $products = Product::where('products.title', 'like', "%$query%")
+        ->orWhere(Product::raw("concat(brands.brand, ' ', products.title)"), 'like', "%$query%")
+        ->orWhere('brands.brand', 'like', "%$query%")
+        ->join('brands', 'products.brand_id', '=', 'brands.b_id')->with('images')
+        ->paginate(6);
         
-
         return view('search-results', compact('products'));
     }
+
+    public function categSearch($categ) {
+        $categ_slug = Category::where('slug',$categ)->first();
+        $paginate = 6;        
+        $products = Product::where('category_id',$categ_slug->id)->paginate($paginate);
+
+        return view('search',compact('products'));
+    }
+
 
  
     

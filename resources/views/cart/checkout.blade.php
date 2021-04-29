@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-cost"> &euro; {{ number_format($productCost, 2, '.', '') }}</div>
-                                    <div class="product-title">{{ $product->brand->title }} {{$product->title}}</div>
+                                    <div class="product-title">{{ $product->brand->brand }} {{$product->title}}</div>
                                     <div class="size-text">Size: <p class="size">{{ $product->pivot->size }}</p></div>
                                     <div class="product-qty">Qty: <p class="qty">{{ $productQuantity }}</p></div>
                                 </div>                            

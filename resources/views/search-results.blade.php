@@ -7,11 +7,9 @@
         <link rel="stylesheet" href="/css/products.css">
     </head>   
 
-
     <div class="products">
         <div class="container">
-            <h1>Search results</h1>
-            <div style="margin-top: 30px; margin-bottom: 30px;"class="results">Showing <span>{{$products->count()}}</span> results for '{{ request()->input('query') }}'</div>
+            <div style="margin-top: 30px; margin-bottom: 30px;"class="results">Showing <span>{{$products->count()}}</span> results for <strong>"{{ request()->input('query') }}"</strong></div>
             <div class="row">
                 <div class="col">
                     <div class="product_grid">
@@ -28,7 +26,7 @@
                                 <div class="product_image">
                                     <a href="{{route('show-product',[$product->category['slug'], $product->slug])}}"><img src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a>
                                     <div class="product_content">
-                                        <div class="product_title">{{ $product->brand->title }} {{$product->title}}</div>
+                                        <div class="product_title">{{ $product->brand }} {{$product->title}}</div>
                                             <div class="prices">
                                             @if($product->new_price != $product->old_price)
                                                 <div class="product_price" >&euro; {{ number_format($product->old_price, 2, '.', '') }}</div>

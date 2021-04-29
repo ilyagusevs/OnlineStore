@@ -19,7 +19,7 @@ class Order extends Model
     ];
 
     // One-to-many relationship of the `orders` table with the` order_items` table
-     public function items() {
+    public function items() {
         return $this->hasMany(OrderItem::class);
     }
 
@@ -30,7 +30,7 @@ class Order extends Model
     public function product() {
         return $this->belongsTo(Product::class);
     }
-
+    
 
 
 }

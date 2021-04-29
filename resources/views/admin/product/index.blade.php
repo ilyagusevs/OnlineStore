@@ -31,7 +31,7 @@
             <td><a href="{{ route('admin.product.show', ['product' => $product->id]) }}"><img style="width: 110px;"  src="/css/productImages/{{$image}}" alt="{{$product->title}}"></a></td>
             <td>
                 <a href="{{ route('admin.product.show', ['product' => $product->id]) }}">
-                   {{$product->brand->title}} {{ $product->title }}
+                    {{ $product->title }}
                 </a>
             </td>
             <td>{{ $product->description }}</td>

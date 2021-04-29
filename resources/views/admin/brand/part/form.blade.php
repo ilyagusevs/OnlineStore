@@ -3,16 +3,16 @@
     <div class="col">
         <div class="form-group">
             <label style="margin-bottom: 10px;">Title</label>
-            <input type="text" class="form-control" name="title" 
-                required maxlength="100" value="{{ old('title') ?? $brand->title ?? '' }}">
+            <input type="text" class="form-control" name="brand" 
+                required maxlength="100" value="{{ old('brand') ?? $brand->brand ?? '' }}">
         </div>
     </div>
 
     <div class="col">
         <div class="form-group">
             <label style="margin-bottom: 10px;">Slug</label>
-            <input type="text" class="form-control" name="slug" 
-                required maxlength="100" value="{{ old('slug') ?? $brand->slug ?? '' }}">
+            <input type="text" class="form-control" name="brand_slug" 
+                required maxlength="100" value="{{ old('brand_slug') ?? $brand->brand_slug ?? '' }}">
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminBrandController;
@@ -43,7 +43,7 @@ Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart
 Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
 
 Route::get('search', [ProductController::class, 'search'])->name('search');
-Route::get('searching', [ProductController::class, 'searching'])->name('searching');
+Route::get('search/{categ}', [ProductController::class, 'categSearch'])->name('categ-search');
 
 Route::group([
     'as' => 'user.', 
@@ -52,6 +52,12 @@ Route::group([
 ], function () {
     Route::get('orders', [OrderController::class, 'orders'])->name('my-orders');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('show-order');
+
+    Route::get('dashboard',[UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
+	Route::put('/edit-profile',[UserController::class, 'updateProfile'])->name('update-profile');
+    Route::get('/change-password',[UserController::class, 'changePassword'])->name('change-password');
+	Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update-password');
 });
 
 Auth::routes([
@@ -86,13 +92,5 @@ Route::group([
         Route::get('/delete-sizes/{id}', [AdminProductController::class, 'deleteSizes']);
         
     });
-
-    
-
-    Route::get('/account', [AccountController::class, 'account']);
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/account', [AccountController::class, 'account']);
 });
 
