@@ -7,26 +7,12 @@
  	        {{Session::get('success')}}
         </div>
     @endif
-    <h1 style="margin-top: 30px; margin-bottom: 20px;">All products</h1>
-    <ul style="display:flex;list-style-type:none;">
-        @foreach($roots as $root)
-            <li><a style="text-decoration: none;" href="#link{{$loop->iteration}}" data-toggle="collapse"><span style="margin-left: -30px; margin-right: 170px;">{{$root->title}}</span></a>
-                <ul id="link{{$loop->iteration}}" class="collapse">
-                    @foreach($root->children as $child)
-                        <li><a style="text-decoration: none;" href="#link1{{$loop->iteration}}" data-toggle="collapse">{{$child->title}}</a>
-                            <ul id="link1{{$loop->iteration}}" class="collapse">
-                                @foreach($child->children as $child2)
-                                    <li> <a style="text-decoration: none;" href="{{ route('admin.product.category', ['category' => $child2->id]) }}">{{$child2->title}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-        @endforeach
-    </ul>
+    <h1 style="margin-top: 30px; margin-bottom: 20px;">{{$category->title}}</h1>
     <a href="{{ route('admin.product.create') }}" class="btn btn-success mb-4">
         Add product
+    </a>
+    <a href="{{ route('admin.product.index') }}" class="btn btn-primary mb-4">
+        Back to all products
     </a>
     <table class="table table-bordered">
         <tr>

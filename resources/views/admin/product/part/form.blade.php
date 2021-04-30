@@ -17,14 +17,14 @@
     <div class="col">
         <div class="form-group">
             @php
-                $brand_id = old('brand_id') ?? $product->brand_id ?? 0;
+                $brand_id = old('brand_b_id') ?? $product->brand_b_id ?? 0;
             @endphp
             <label style="margin-bottom: 10px;">Brand</label>
-            <select name="brand_id" class="form-control">
+            <select name="brand_b_id" class="form-control">
                 <option disabled selected>Choose brand</option>
                 @foreach($brands as $brand)
-                    <option value="{{ $brand->id }}" @if ($brand->id == $brand_id) selected @endif>
-                        {{ $brand->title }}
+                    <option value="{{ $brand->b_id }}" @if ($brand->b_id == $brand_id) selected @endif>
+                        {{ $brand->brand }}
                     </option>
                 @endforeach
             </select>

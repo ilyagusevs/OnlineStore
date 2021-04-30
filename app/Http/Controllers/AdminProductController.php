@@ -20,8 +20,14 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
-        return view('admin.product.index', compact('products'));
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);
+        $roots = Category::with('children')->whereNull('parent_id')->orderBy('title', 'asc')->get();
+        return view('admin.product.index', compact('products', 'roots'));
+    }
+
+    public function category(Category $category) {
+        $products = $category->products()->paginate(10);
+        return view('admin.product.category', compact('category', 'products'));
     }
 
     /**
@@ -191,4 +197,6 @@ class AdminProductController extends Controller
         Size::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Size(s) successfully deleted!');
     }
+
+
 }
