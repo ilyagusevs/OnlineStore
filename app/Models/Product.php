@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     protected $fillable = [
         'category_id',
-        'brand_id',
+        'brand_b_id',
         'title',
         'old_price',
         'new_price',
@@ -26,7 +25,7 @@ class Product extends Model
     }
 
     public function brand() {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->belongsTo(Brand::class, 'brand_b_id');
     }
     
     public function carts() {

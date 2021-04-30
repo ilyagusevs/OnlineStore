@@ -26,10 +26,10 @@
             <td>{{ $brand->brand }}</td>
             <td>{{ $brand->brand_slug }}</td>
             <td>
-                <a href="{{ route('admin.brand.edit', ['brand' => $brand->id]) }}">
+                <a href="{{ route('admin.brand.edit', ['brand' => $brand->b_id]) }}">
                     <i class="far fa-edit"></i>
                 </a>
-                <form action="{{ route('admin.brand.destroy', ['brand' => $brand->id]) }}"
+                <form action="{{ route('admin.brand.destroy', ['brand' => $brand->b_id]) }}"
                       method="post" onsubmit="return confirm('Delete this brand?')">
                     @csrf
                     @method('DELETE')
