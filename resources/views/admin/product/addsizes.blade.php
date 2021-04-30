@@ -75,10 +75,6 @@
         Edit size(s)
     </button>
 </form>
-    <a href="{{ url('admin/product/'.$product['id']) }}">
-        <button style="margin-top: 10px;" type="submit" class="btn btn-primary">
-            Back to product
-        </button>
-    </a>
 @endsection
+
 

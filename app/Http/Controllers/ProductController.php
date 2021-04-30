@@ -32,69 +32,69 @@ class ProductController extends Controller
         }
 
         if(Request::get('filter') == 'nike'){
-            $products = Product::where('category_id',$categ_slug->id)->where('brand_id', 1)->paginate($paginate);
+            $products = Product::where('category_id',$categ_slug->id)->where('brand_b_id', 1)->paginate($paginate);
         }elseif(Request::get('filter') == 'adidas'){
-            $products = Product::where('category_id',$categ_slug->id)->where('brand_id', 2)->paginate($paginate);
+            $products = Product::where('category_id',$categ_slug->id)->where('brand_b_id', 2)->paginate($paginate);
         }elseif(Request::get('filter') == 'reebok'){
-            $products = Product::where('category_id',$categ_slug->id)->where('brand_id', 3)->paginate($paginate);
+            $products = Product::where('category_id',$categ_slug->id)->where('brand_b_id', 3)->paginate($paginate);
         }
 
         if(Request::get('filter-size') == '38'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '38');
+                $query->where('size', '38')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '39'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '39');
+                $query->where('size', '39')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '40'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '40');
+                $query->where('size', '40')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '41'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '41');
+                $query->where('size', '41')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '42'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '42');
+                $query->where('size', '42')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '43'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '43');
+                $query->where('size', '43')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '44'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '44');
+                $query->where('size', '44')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == '44'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', '44');
+                $query->where('size', '44')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
 
         }elseif(Request::get('filter-size') == 'xs'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'XS');
+                $query->where('size', 'XS')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == 'S'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'S');
+                $query->where('size', 'S')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == 'm'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'M');
+                $query->where('size', 'M')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == 'l'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'L');
+                $query->where('size', 'L')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == 'xl'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'XL');
+                $query->where('size', 'XL')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }elseif(Request::get('filter-size') == 'one-size'){
             $products = Product::where('category_id',$categ_slug->id)->whereHas('sizes', function($query){
-                $query->where('size', 'One size');
+                $query->where('size', 'One size')->where('stock', '>', '0');
             })->with('sizes')->paginate($paginate);
         }
         
@@ -111,22 +111,10 @@ class ProductController extends Controller
         $products = Product::where('products.title', 'like', "%$query%")
         ->orWhere(Product::raw("concat(brands.brand, ' ', products.title)"), 'like', "%$query%")
         ->orWhere('brands.brand', 'like', "%$query%")
-        ->join('brands', 'products.brand_id', '=', 'brands.b_id')->with('images')
+        ->join('brands', 'products.brand_b_id', '=', 'brands.b_id')->with('images')
         ->paginate(6);
         
         return view('search-results', compact('products'));
     }
-
-    public function categSearch($categ) {
-        $categ_slug = Category::where('slug',$categ)->first();
-        $paginate = 6;        
-        $products = Product::where('category_id',$categ_slug->id)->paginate($paginate);
-
-        return view('search',compact('products'));
-    }
-
-
- 
-    
 
 }

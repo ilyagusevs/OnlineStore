@@ -20,22 +20,19 @@ class UserController extends Controller
     }
 
     public function updateProfile(Request $request){
-    	 $request->validate([
-         'firstname'=>'required|min:2|max:100',
-         'lastname'=>'required|min:2|max:100',
-         'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id.',id' 
-         ]);
+    	$request->validate([
+        'firstname'=>'required|min:2|max:100',
+        'lastname'=>'required|min:2|max:100',
+        'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id.',id' 
+        ]);
 
-         $user = Auth::user();
+        $user = Auth::user();
+        $user->firstname = $request['firstname'];
+        $user->lastname = $request['lastname'];
+        $user->email = $request['email'];
+        $user->save();
 
-         $user->update([
-         	'firstname'=>$request->firstname,
-         	'lastname'=>$request->lastname,
-             'email'=>$request->email,
-         ]);
-
-         return redirect()->route('user.edit-profile')->with('success','Profile successfully updated');
-
+        return redirect()->route('user.edit-profile')->with('success','Profile successfully updated');
     }
 
     public function changePassword(){ 

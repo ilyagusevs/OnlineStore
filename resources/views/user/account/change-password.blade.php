@@ -1,24 +1,20 @@
 @extends('user.account.account-layout')
 @section('profile')
     @if(Session::has('errors'))
-        <div style="margin-top: 30px; margin-bottom: 20px;" class="alert alert-danger" role="alert">
+        <div style="margin-bottom: 20px;" class="alert alert-danger" role="alert">
  	        {{Session::get('errors')->first()}}
         </div>
     @endif
     @if(Session::has('error'))
-        <div style="margin-top: 30px; margin-bottom: 20px;" class="alert alert-danger" role="alert">
+        <div style=" margin-bottom: 20px;" class="alert alert-danger" role="alert">
  	        {{Session::get('error')}}
         </div>
     @endif
     @if(Session::has('success'))
-        <div style="margin-top: 20px;" class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert">
  	        {{Session::get('success')}}
         </div>
     @endif
- <div class="card">
-    <div class="card-header">
-        Change password
-    </div>
     <div class="card-body">
 	    <form action="{{ route('user.update-password') }}" method="POST">
             @csrf
@@ -37,6 +33,5 @@
             <button class="btn btn-success" type="submit">Change Password</button>
         </form>
     </div>
-</div>
 
 @endsection

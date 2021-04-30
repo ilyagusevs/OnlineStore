@@ -43,7 +43,6 @@ Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart
 Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
 
 Route::get('search', [ProductController::class, 'search'])->name('search');
-Route::get('search/{categ}', [ProductController::class, 'categSearch'])->name('categ-search');
 
 Route::group([
     'as' => 'user.', 

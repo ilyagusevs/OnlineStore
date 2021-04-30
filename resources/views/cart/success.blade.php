@@ -32,7 +32,7 @@
             </tr>
         @endforeach
         <tr>
-            <th style="text-align: right;" colspan="3" class="text-right">Total</th>
+            <th style="text-align: right;" colspan="2" class="text-right">Total</th>
             <th>&euro; {{ number_format($order->amount, 2, '.', '') }}</th>
             <th></th>
         </tr>

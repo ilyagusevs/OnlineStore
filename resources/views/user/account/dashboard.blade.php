@@ -2,12 +2,10 @@
 
 @section('title', 'JUST SPORT')
 @section('profile')
-    <div class="card">
-        <div class="card-header">
-            Dashboard
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Welcome to your account</h5>
-        </div>
-    </div>
+    <p>Name <span>{{Auth::user()->firstname}}</span></p>
+    <hr class="my-4"> 
+    <p>Surname <span>{{Auth::user()->lastname}}</span></p>
+    <hr class="my-4">
+    <p>Email <span>{{Auth::user()->email}}</span></p>
+    <hr class="my-4">  
 @endsection
