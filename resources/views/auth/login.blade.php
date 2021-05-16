@@ -18,21 +18,22 @@
                         NEW TO JUST SPORT?
                     </a>
                 </div>
-                <a style="display: flex; justify-content: center; margin-bottom: 20px;">SIGN IN WITH EMAIL</a>
+                <span style="display: flex; justify-content: center; margin-bottom: 20px;">SIGN IN WITH EMAIL</span>
                 <p id="profile-name" class="profile-name-card"></p>
                 <form class="col-lg-6 offset-lg-3" method="POST" action="{{route('login')}}" aria-label="Login">
                     @csrf
-                    <a>EMAIL ADDRESS:</a>
-                    <input style="margin-bottom: 40px; margin-top: 10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    <a>PASSWORD:</a>
-                    <input style="margin-top: 10px;" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <span>EMAIL ADDRESS:</span>
+                    <input style="margin-top: 10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" autofocus>
+                    <div class="invalid-feedback">
+                        Wrong password or email!
+                    </div>
+                    <br>
+                    <span>PASSWORD:</span>
+                    <input style="margin-top: 10px;" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
                     <button style="margin-bottom: 10px;" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">SIGN IN</button>
-                </form><!-- /form -->
-                <a style="display: flex; justify-content: center; font-size: 14px;"  href="#" class="forgot-password">
-                    FORGOT THE PASSWORD?
-                </a>
-            </div><!-- /card-container -->
-        </div><!-- /container -->
+                </form>
+            </div>
+        </div>
     </body>
 </html>
 

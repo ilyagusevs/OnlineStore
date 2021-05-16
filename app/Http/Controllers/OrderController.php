@@ -13,9 +13,6 @@ class OrderController extends Controller
     }
 
     public function show(Order $order) {
-        if (auth()->user()->id !== $order->user_id) {
-            abort(404);
-        }
         return view('user.orders.show', compact('order'));
     }
 }

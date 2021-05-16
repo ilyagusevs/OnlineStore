@@ -162,3 +162,21 @@ a {
 {
 	margin-left: 63px;
 }
+
+.search-results {
+	background: #f0f0f5;
+	height: 100px;
+	margin-bottom: 50px;
+	text-align: center;
+	padding: 50px 0;
+}
+
+.results {
+  margin-top: -25px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+}

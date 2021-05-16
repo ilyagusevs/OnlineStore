@@ -18,29 +18,29 @@
                         ALREADY REGISTRED?
                     </a>
                 </div>
-                <a style="display: flex; justify-content: center; margin-bottom: 20px;">SIGN UP USING YOUR EMAIL</a>
+                <span style="display: flex; justify-content: center; margin-bottom: 20px;">SIGN UP USING YOUR EMAIL</span>
             <form class="col-lg-6 offset-lg-3" method="POST" action="{{route('register')}}" aria-label="Register">
             @csrf
-                <a>EMAIL ADDRESS:</a>
-                <input style="margin-top: 10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus> 
+                <span>EMAIL ADDRESS:</span>
+                <input style="margin-top: 10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" autofocus> 
                 <div class="invalid-feedback">
                     Email already used!
                 </div>
                 <br>
-                <a>FIRST NAME:</a>
-                <input style="margin-top: 10px;"  id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname">
+                <span>FIRST NAME:</span>
+                <input style="margin-top: 10px;"  id="firstname" type="text" class="form-control" name="firstname">
                 <br>
-                <a>LAST NAME:</a>
-                <input style="margin-top: 10px;"  id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
+                <span>LAST NAME:</span>
+                <input style="margin-top: 10px;"  id="lastname" type="text" class="form-control" name="lastname">
                 <br>
-                <a>PASSWORD:</a>
-                <input style="margin-top: 10px;"  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                <span>PASSWORD:</span>
+                <input style="margin-top: 10px;"  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
                 <div class="invalid-feedback">
                     Password mismatch!
                 </div>
                 <br>
-                <a>CONFIRM PASSWORD:</a>
-                <input style="margin-top: 10px;" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                <span>CONFIRM PASSWORD:</span>
+                <input style="margin-top: 10px;" id="password-confirm" type="password" class="form-control" name="password_confirmation">
                 <button style="margin-bottom: 10px;" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">JOIN</button>
             </form><!-- /form -->
         </div><!-- /card-container -->

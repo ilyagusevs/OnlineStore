@@ -1,6 +1,6 @@
 @php($level++)
 @foreach ($items->where('parent_id', $parent) as $item)
-    <option value="{{ $item->id }}" @if ($item->id == $category_id) selected @endif>
+    <option value="{{ $item->id }}">
         @if ($level) {!! str_repeat('—', $level) !!}  @endif {{ $item->title }}
     </option>
     @if (count($items->where('parent_id', $parent)))

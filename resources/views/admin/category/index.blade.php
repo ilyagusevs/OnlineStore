@@ -7,7 +7,7 @@
         </div>
     @endif
     <h1 style="margin-top: 20px;">All categories</h1>
-        <a style="margin-top: 20px; margin-bottom: 30px;" class="btn btn-success mb-4" role="button" href="{{ route('admin.category.create')}}">Add category</a>
+    <a style="margin-top: 20px; margin-bottom: 30px;" class="btn btn-success mb-4" role="button" href="{{ route('admin.category.create')}}">Add category</a>
     <table class="table table-bordered">
         <tr>
             <th width="40%">Title</th>

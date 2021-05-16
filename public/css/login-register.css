@@ -8,10 +8,9 @@
     margin-top: 20px;
     
 }
-a {
+span, a {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    
 }
 
 .btn {

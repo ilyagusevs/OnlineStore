@@ -33,7 +33,6 @@ class CartController extends Controller
         $size = $request->input('size');
         $user_id = $request->input('user_id');
         $this->cart->increase($id, $size, $user_id, $quantity);
-        //echo "<pre>"; print_r($size); die;
         // redirect back to the page where the "Add to cart" button was clicked
         return back();
     }
@@ -42,21 +41,21 @@ class CartController extends Controller
     public function cartPlus($id) {
         $this->cart->increase($id);
         // redirect back to the cart page
-        return redirect()->route('cart');
+        return redirect()->back();
     }
 
     // Decreases the number of items $id in the cart by one
     public function cartMinus($id) {
         $this->cart->decrease($id);
         // redirect back to the cart page
-        return redirect()->route('cart');
+        return redirect()->back();
     }  
 
     // Removes item with $id from cart
     public function cartRemove($id) {
         $this->cart->remove($id);
         // redirect back to the cart page
-        return redirect()->route('cart');
+        return redirect()->back();
     }
 
     // Saving the order in the database
@@ -91,22 +90,8 @@ class CartController extends Controller
         $this->cart->delete();
 
         return redirect()
-            ->route('cart.success')
+            ->route('user.my-orders')
             ->with('order_id', $order->id);
-    }
-
-    // Successful checkout message
-    public function cartSuccess(Request $request) {
-        if ($request->session()->exists('order_id')) {
-            // Here the buyer enters immediately after successful ordering
-            $order_id = $request->session()->pull('order_id');
-            $order = Order::findOrFail($order_id);
-            return view('cart.success', compact('order'));
-        } else {
-            // If the buyer came here by accident, not after placing the order, then
-            // he has nothing to do here - redirect to the cart page
-            return redirect()->route('cart');
-        }
     }
     
 }

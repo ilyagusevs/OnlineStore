@@ -21,7 +21,7 @@
                 <td>{{ $order->phone }}</td>
                 <td>
                     <a href="{{ route('admin.order.show', ['order' => $order->id]) }}">
-                        <button class="btn btn-success" type="button">Open</button>
+                        <i class="fas fa-eye"></i>
                     </a>
                 </td>
             </tr>

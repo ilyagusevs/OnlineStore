@@ -1,4 +1,6 @@
-@php($level++)
+@php
+    $level++;
+@endphp
 @foreach ($items->where('parent_id', $parent) as $item)
     <tr>
         <td>
@@ -10,7 +12,6 @@
                 {{ $item->title }}
             </a>
         </td>
-
         <td style="display: flex;">
             <a href="{{ route('admin.category.edit', ['category' => $item->id]) }}">
                 <i class="far fa-edit"></i>

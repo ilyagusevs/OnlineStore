@@ -1,7 +1,7 @@
-@extends('admin.admin', ['title' => 'Просмотр заказа'])
+@extends('admin.admin', ['title' => 'Order details'])
 
 @section('content')
-    <h1 style="margin-top: 20px; margin-bottom: 20px;">Order details № {{ $order->id }}</h1>
+    <h1 style="margin-top: 20px; margin-bottom: 20px;">Order details # {{ $order->id }}</h1>
     <table class="table table-bordered">
         <tr>
             <th>#</th>

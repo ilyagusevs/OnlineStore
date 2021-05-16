@@ -32,7 +32,7 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->save();
 
-        return redirect()->route('user.edit-profile')->with('success','Profile successfully updated');
+        return redirect()->route('user.edit-profile')->with('success','Profile successfully updated!');
     }
 
     public function changePassword(){ 
@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
 
         if(!(Hash::check($request->get('current_password'), Auth::user()->password))) {
-            return back()->with('errors', 'Your current password does not match with what you provided');
+            return back()->with('errors', 'Your current password does not match with what you provided!');
         }
 
         if(strcmp($request->get('current_password'), $request->get('new_password')) == 0) {

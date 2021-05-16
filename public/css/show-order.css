@@ -53,6 +53,7 @@ h1, h3, strong {
 
 .product_title {
 	font-family: 'Montserrat', sans-serif;
+    width: 300px;
 }
 
 .product_new_price {

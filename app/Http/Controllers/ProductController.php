@@ -111,7 +111,7 @@ class ProductController extends Controller
         $products = Product::where('products.title', 'like', "%$query%")
         ->orWhere(Product::raw("concat(brands.brand, ' ', products.title)"), 'like', "%$query%")
         ->orWhere('brands.brand', 'like', "%$query%")
-        ->join('brands', 'products.brand_b_id', '=', 'brands.b_id')->with('images')
+        ->join('brands', 'products.brand_b_id', '=', 'brands.b_id')
         ->paginate(6);
         
         return view('search-results', compact('products'));

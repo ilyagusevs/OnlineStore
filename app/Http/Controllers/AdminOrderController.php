@@ -28,7 +28,7 @@ class AdminOrderController extends Controller
      */
     public function create()
     {
-        return view('admin.order.show', compact('order'));
+        
     }
 
     /**
@@ -61,7 +61,7 @@ class AdminOrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('admin.order.edit', compact('order'));
+        
     }
 
     /**

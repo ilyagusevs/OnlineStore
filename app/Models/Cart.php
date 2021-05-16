@@ -27,9 +27,6 @@ class Cart extends Model
     // If the item is not yet in the cart, it adds this item; 
     // $count can be either positive or negative
     private function change($id, $user_id, $size, $count = 0) {
-        if ($count == 0) {
-            return;
-        }
         // If the item is in the cart - change the quantity
         if ($this->products->contains($id)) {
             // Get the table row object `cart_product`

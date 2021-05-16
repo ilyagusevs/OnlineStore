@@ -52,7 +52,6 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $product = Product::create($request->all());
         return redirect()
             ->route('admin.product.show', ['product' => $product->id])
@@ -78,9 +77,7 @@ class AdminProductController extends Controller
      */
     public function edit(Product $product)
     {
-          // все категории для возможности выбора родителя
           $items = Category::all();
-          // все бренды для возмозжности выбора подходящего
           $brands = Brand::all();
           return view('admin.product.edit', compact('product', 'items', 'brands'));
     }

@@ -23,7 +23,7 @@
             <select name="brand_b_id" class="form-control">
                 <option disabled selected>Choose brand</option>
                 @foreach($brands as $brand)
-                    <option value="{{ $brand->b_id }}" @if ($brand->b_id == $brand_id) selected @endif>
+                    <option value="{{ $brand->b_id }}" >
                         {{ $brand->brand }}
                     </option>
                 @endforeach

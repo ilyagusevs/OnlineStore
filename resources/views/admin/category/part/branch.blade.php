@@ -1,6 +1,6 @@
 @php($level++)
 @foreach ($items->where('parent_id', $parent) as $item)
-    <option value="{{ $item->id }}" @if ($item->id == $parent_id) selected @endif>
+    <option value="{{ $item->id }}" >
     <div style="font-weight:@if ($level) normal @else bold @endif"></div>
         @if ($level) {!! str_repeat('—', $level) !!}  @endif {{ $item->title }}
     </option>

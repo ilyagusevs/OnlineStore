@@ -19,7 +19,7 @@ class CheckisAdmin
     {
         $user = Auth::user();
         if(!$user->isAdmin()){
-            return redirect()->route('home');
+            return redirect()->route('welcome');
         }
 
         return $next($request);

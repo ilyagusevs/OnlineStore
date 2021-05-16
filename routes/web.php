@@ -33,14 +33,13 @@ Route::get('/category/{categ}', [ProductController::class, 'showCategoryProduct'
 Route::get('/category/{categ}/{slug}', [ProductController::class, 'showProduct'])->name('show-product');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->where('id', '[0-9]+')->name('cart-add');
-Route::post('/cart/plus/{id}', [CartController::class, 'cartPlus'])->where('id', '[0-9]+')->name('cart-plus');
-Route::post('/cart/minus/{id}', [CartController::class, 'cartMinus'])->where('id', '[0-9]+')->name('cart-minus');
-Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->where('id', '[0-9]+')->name('cart-remove');
+Route::post('/cart/add/{id}', [CartController::class, 'cartAdd'])->name('cart-add');
+Route::post('/cart/plus/{id}', [CartController::class, 'cartPlus'])->name('cart-plus');
+Route::post('/cart/minus/{id}', [CartController::class, 'cartMinus'])->name('cart-minus');
+Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->name('cart-remove');
 
 Route::get('/cart/checkout', [CartController::class, 'cartCheckout'])->name('cart-checkout');
 Route::post('/cart/saveorder', [CartController::class, 'saveOrder'])->name('cart-saveorder');
-Route::get('/cart/success', [CartController::class, 'cartSuccess'])->name('cart.success');
 
 Route::get('search', [ProductController::class, 'search'])->name('search');
 
@@ -54,7 +53,7 @@ Route::group([
 
     Route::get('dashboard',[UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
-	Route::put('/edit-profile',[UserController::class, 'updateProfile'])->name('update-profile');
+	Route::put('/update-profile',[UserController::class, 'updateProfile'])->name('update-profile');
     Route::get('/change-password',[UserController::class, 'changePassword'])->name('change-password');
 	Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update-password');
 });
@@ -73,12 +72,12 @@ Route::group([
     'prefix' => 'admin'
 ], function () {
     Route::group(['middleware' => 'is_admin'], function () {
-        Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin-orders');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('product', AdminProductController::class);
+        Route::get('product/category/{category}', [AdminProductController::class, 'category'])->name('product.category');
         Route::resource('brand', AdminBrandController::class);
         Route::resource('order', AdminOrderController::class, ['except'=> [
-            'create', 'store', 'destroy'
+            'create', 'store', 'edit', 'update', 'destroy'
         ]]);
         Route::resource('user', AdminUserController::class, ['except' => [
             'create', 'store', 'show', 'destroy'

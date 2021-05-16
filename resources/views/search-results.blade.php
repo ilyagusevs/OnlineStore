@@ -8,8 +8,11 @@
     </head>   
 
     <div class="products">
+        <div class="search-results">
+            <div class="results">Showing results for <br><h3>"{{ request()->input('query') }}"</h3></div>
+        </div>
         <div class="container">
-            <div style="margin-top: 30px; margin-bottom: 30px;"class="results">Showing <span>{{$products->count()}}</span> results for <strong>"{{ request()->input('query') }}"</strong></div>
+        <div style="margin-top: -10px; margin-bottom: 20px;"class="results">Showing <span>{{$products->count()}}</span> results</div>
             <div class="row">
                 <div class="col">
                     <div class="product_grid">

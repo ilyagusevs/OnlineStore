@@ -35,10 +35,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with(compact('categories'));
         });
 
-        Blade::if('admin', function () {
-            return Auth::check() && Auth::user()->isAdmin();
-        });
-
         date_default_timezone_set('Europe/Riga');
     }
 }

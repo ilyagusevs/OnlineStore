@@ -62,7 +62,7 @@
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
         <form id="search-from" action="{{ route('search') }}" method="get">
-          <input class="search_input" type="text" name="query" id="query" value="{{ request()->input('query') }}" placeholder="Search for items and brands">
+          <input class="search_input" type="text" name="query" value="{{ request()->input('query') }}" placeholder="Search for items and brands">
           <button style="width: 40px; margin-top: -7px;" class="btn"><i class="fa fa-search"></i></button>
         </form> 
         </div>
@@ -71,11 +71,13 @@
       
         
       <div class="profile">
-        @admin
-          <div class="admin-panel">
-            <a href="{{route('admin.product.index')}}">Admin Panel</a>
-          </div>
-        @endadmin
+        
+          @if(Auth::check() && Auth::user()->isAdmin())
+            <div class="admin-panel">
+              <a href="{{route('admin.product.index')}}">Admin Panel</a>
+            </div>
+          @endif
+       
          <ul class="navbar-nav">
 		      <li style="width: 20px; margin-right: 25px;" class="nav-item dropdown">
             <a style="margin-top: 7px;" class="nav-link dropdown" href="#" data-toggle="dropdown"><i class="fa fa-user fa-lg" ></i></a>
